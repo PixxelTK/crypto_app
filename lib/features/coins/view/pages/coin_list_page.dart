@@ -64,32 +64,45 @@ class _CoinListPageState extends State<CoinListPage> {
               surfaceTintColor: Colors.transparent,
               elevation: 0,
               scrolledUnderElevation: 0,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Container(
-                  padding: const EdgeInsets.only(
-                    left: AppSpacing.lg,
-                    right: AppSpacing.lg,
-                    bottom: 70,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      context.colors.background,
+                      context.colors.background.withValues(alpha: 0.0),
+                    ],
+                    stops: const [0.3, 1],
                   ),
-                  alignment: Alignment.bottomLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: l10n.appNameFirst,
-                          style: AppTypography.headingLarge.copyWith(
-                            color: context.colors.primary,
-                            fontWeight: FontWeight.bold,
+                ),
+                child: FlexibleSpaceBar(
+                  background: Container(
+                    padding: const EdgeInsets.only(
+                      left: AppSpacing.lg,
+                      right: AppSpacing.lg,
+                      bottom: 70,
+                    ),
+                    alignment: Alignment.bottomLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: l10n.appNameFirst,
+                            style: AppTypography.headingLarge.copyWith(
+                              color: context.colors.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' ${l10n.appNameSecond}',
-                          style: AppTypography.headingLarge.copyWith(
-                            color: context.colors.textPrimary,
-                            fontWeight: FontWeight.w300,
+                          TextSpan(
+                            text: ' ${l10n.appNameSecond}',
+                            style: AppTypography.headingLarge.copyWith(
+                              color: context.colors.textPrimary,
+                              fontWeight: FontWeight.w300,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
