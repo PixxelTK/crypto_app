@@ -11,9 +11,14 @@ class CoinRepositoryImpl implements CoinRepository {
   @override
   Future<({List<Coin> coins, String? nextCursor})> getCoins({
     String? cursor,
+    String? search,
     required int limit,
   }) async {
-    final result = await dataSource.getCoins(cursor: cursor, limit: limit);
+    final result = await dataSource.getCoins(
+      cursor: cursor,
+      search: search,
+      limit: limit,
+    );
 
     final coins = result.coins.map((model) => model.toEntity()).toList();
     return (coins: coins, nextCursor: result.nextCursor);

@@ -10,11 +10,18 @@ class CoinDataSource {
 
   Future<({List<CoinModel> coins, String? nextCursor})> getCoins({
     String? cursor,
+    String? search,
     required int limit,
   }) async {
+    final queryParameters = <String, dynamic>{
+      'cursor': ?cursor,
+      if (search != null && search.isNotEmpty) 'search': search,
+      'limit': limit,
+    };
+
     final response = await apiClient.get(
       ApiEndpoints.coins,
-      queryParameters: {'cursor': ?cursor, 'limit': limit},
+      queryParameters: queryParameters,
     );
 
     final data = response['data'] as Map<String, dynamic>;
