@@ -23,7 +23,7 @@ class CoinListItem extends StatelessWidget {
 
     final change = coin.change ?? 0.0;
     final isPositive = change >= 0;
-    final changeColor = isPositive ? AppColors.success : AppColors.danger;
+    final changeColor = isPositive ? context.colors.success : context.colors.danger;
     final changeIcon = isPositive
         ? Icons.arrow_upward_rounded
         : Icons.arrow_downward_rounded;
@@ -35,7 +35,7 @@ class CoinListItem extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
-        color: AppColors.surface,
+        color: context.colors.surface,
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -62,7 +62,7 @@ class CoinListItem extends StatelessWidget {
           spacing: AppSpacing.sm,
           children: [
             CircleAvatar(
-              backgroundColor: AppColors.surfaceSecondary,
+              backgroundColor: context.colors.surfaceSecondary,
               radius: AppSizes.iconLarge,
               child: ClipOval(
                 child: Image.network(
@@ -72,7 +72,7 @@ class CoinListItem extends StatelessWidget {
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) => Icon(
                     Icons.monetization_on,
-                    color: coinColor ?? AppColors.textDisabled,
+                    color: coinColor ?? context.colors.textDisabled,
                   ),
                 ),
               ),
@@ -84,7 +84,7 @@ class CoinListItem extends StatelessWidget {
                   Text(
                     coin.name,
                     style: AppTypography.titleMedium.copyWith(
-                      color: AppColors.textPrimary,
+                      color: context.colors.textPrimary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -92,7 +92,7 @@ class CoinListItem extends StatelessWidget {
                   Text(
                     coin.symbol,
                     style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textSecondary,
+                      color: context.colors.textSecondary,
                     ),
                   ),
                 ],
@@ -104,7 +104,7 @@ class CoinListItem extends StatelessWidget {
                 Text(
                   '\$${coin.price.toStringAsFixed(2)}',
                   style: AppTypography.titleMedium.copyWith(
-                    color: AppColors.textPrimary,
+                    color: context.colors.textPrimary,
                   ),
                 ),
                 Row(

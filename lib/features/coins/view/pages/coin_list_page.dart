@@ -47,8 +47,8 @@ class _CoinListPageState extends State<CoinListPage> {
     return Scaffold(
       body: RefreshIndicator.adaptive(
         edgeOffset: topPadding,
-        color: AppColors.textPrimary,
-        backgroundColor: AppColors.surface,
+        color: context.colors.textPrimary,
+        backgroundColor: context.colors.surface,
         onRefresh: () async {
           await context.read<CoinListCubit>().loadCoins(isRefresh: true);
         },
@@ -78,14 +78,14 @@ class _CoinListPageState extends State<CoinListPage> {
                         TextSpan(
                           text: l10n.appNameFirst,
                           style: AppTypography.headingLarge.copyWith(
-                            color: AppColors.primary,
+                            color: context.colors.primary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         TextSpan(
                           text: ' ${l10n.appNameSecond}',
                           style: AppTypography.headingLarge.copyWith(
-                            color: AppColors.textPrimary,
+                            color: context.colors.textPrimary,
                             fontWeight: FontWeight.w300,
                           ),
                         ),
@@ -110,7 +110,7 @@ class _CoinListPageState extends State<CoinListPage> {
                 child: Text(
                   l10n.topCoinsTitle,
                   style: AppTypography.headingSmall.copyWith(
-                    color: AppColors.textPrimary,
+                    color: context.colors.textPrimary,
                   ),
                 ),
               ),

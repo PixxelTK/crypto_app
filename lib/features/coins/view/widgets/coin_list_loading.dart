@@ -22,7 +22,7 @@ class CoinListLoading extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
-            color: AppColors.surface,
+            color: context.colors.surface,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -34,8 +34,8 @@ class CoinListLoading extends StatelessWidget {
                 Container(
                   width: AppSizes.iconExtraLarge,
                   height: AppSizes.iconExtraLarge,
-                  decoration: const BoxDecoration(
-                    color: AppColors.neutral200,
+                  decoration: BoxDecoration(
+                    color: context.colors.border,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -48,7 +48,7 @@ class CoinListLoading extends StatelessWidget {
                         width: 100,
                         height: 16,
                         decoration: BoxDecoration(
-                          color: AppColors.neutral200,
+                          color: context.colors.border,
                           borderRadius: BorderRadius.circular(AppRadius.xs),
                         ),
                       ),
@@ -57,7 +57,7 @@ class CoinListLoading extends StatelessWidget {
                         width: 60,
                         height: 12,
                         decoration: BoxDecoration(
-                          color: AppColors.neutral200,
+                          color: context.colors.border,
                           borderRadius: BorderRadius.circular(AppRadius.xs),
                         ),
                       ),
@@ -72,7 +72,7 @@ class CoinListLoading extends StatelessWidget {
                       width: 80,
                       height: 16,
                       decoration: BoxDecoration(
-                        color: AppColors.neutral200,
+                        color: context.colors.border,
                         borderRadius: BorderRadius.circular(AppRadius.xs),
                       ),
                     ),
@@ -81,7 +81,7 @@ class CoinListLoading extends StatelessWidget {
                       width: 50,
                       height: 12,
                       decoration: BoxDecoration(
-                        color: AppColors.neutral200,
+                        color: context.colors.border,
                         borderRadius: BorderRadius.circular(AppRadius.xs),
                       ),
                     ),

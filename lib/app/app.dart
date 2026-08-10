@@ -25,6 +25,8 @@ class App extends StatelessWidget {
       child: MaterialApp(
         title: 'Crypto App',
         theme: AppTheme.light(),
+        darkTheme: AppTheme.dark(),
+        themeMode: ThemeMode.system,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         initialRoute: AppRouter.home,

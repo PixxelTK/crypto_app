@@ -24,21 +24,21 @@ class CoinEmptyState extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(AppSpacing.lg),
-            decoration: const BoxDecoration(
-              color: AppColors.surfaceSecondary,
+            decoration: BoxDecoration(
+              color: context.colors.surfaceSecondary,
               shape: BoxShape.circle,
             ),
-            child: const Icon(
+            child: Icon(
               Icons.search_off_rounded,
               size: 48,
-              color: AppColors.textSecondary,
+              color: context.colors.textSecondary,
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
           Text(
             l10n.emptyCoinsTitle,
             style: AppTypography.titleLarge.copyWith(
-              color: AppColors.textPrimary,
+              color: context.colors.textPrimary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -46,7 +46,7 @@ class CoinEmptyState extends StatelessWidget {
           Text(
             l10n.emptyCoinsSubtitle,
             style: AppTypography.bodyMedium.copyWith(
-              color: AppColors.textSecondary,
+              color: context.colors.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),

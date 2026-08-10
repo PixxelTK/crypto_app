@@ -27,20 +27,20 @@ class CoinListError extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(AppSpacing.lg),
             decoration: BoxDecoration(
-              color: AppColors.danger.withValues(alpha: 0.1),
+              color: context.colors.danger.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
+            child: Icon(
               Icons.error_outline_rounded,
               size: 48,
-              color: AppColors.danger,
+              color: context.colors.danger,
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
           Text(
             l10n.errorTitle,
             style: AppTypography.titleLarge.copyWith(
-              color: AppColors.textPrimary,
+              color: context.colors.textPrimary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -48,7 +48,7 @@ class CoinListError extends StatelessWidget {
           Text(
             message,
             style: AppTypography.bodyMedium.copyWith(
-              color: AppColors.textSecondary,
+              color: context.colors.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),

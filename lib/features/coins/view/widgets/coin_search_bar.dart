@@ -18,7 +18,7 @@ class CoinSearchBar extends StatelessWidget {
       child: Container(
         height: 44,
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: context.colors.surface,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           boxShadow: [
             BoxShadow(
@@ -34,11 +34,11 @@ class CoinSearchBar extends StatelessWidget {
             isDense: true,
             hintText: AppLocalizations.of(context)!.searchCoinsHint,
             hintStyle: AppTypography.bodyMedium.copyWith(
-              color: AppColors.textTertiary,
+              color: context.colors.textTertiary,
             ),
-            prefixIcon: const Icon(
+            prefixIcon: Icon(
               Icons.search_rounded,
-              color: AppColors.textSecondary,
+              color: context.colors.textSecondary,
               size: 20,
             ),
             border: InputBorder.none,

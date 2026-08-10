@@ -48,24 +48,92 @@ class AppColors {
   static const Color info500 = Color(0xFF3B82F6);
   static const Color info600 = Color(0xFF2563EB);
 
-  static const Color background = neutral100;
-  static const Color surface = neutral0;
-  static const Color surfaceSecondary = neutral50;
+  static const Color backgroundLight = neutral100;
+  static const Color surfaceLight = neutral0;
+}
 
-  static const Color textPrimary = neutral900;
-  static const Color textSecondary = neutral600;
-  static const Color textTertiary = neutral500;
-  static const Color textDisabled = neutral400;
+class AppColorsTheme {
+  final Color background;
+  final Color surface;
+  final Color surfaceSecondary;
 
-  static const Color border = neutral200;
-  static const Color borderStrong = neutral300;
+  final Color textPrimary;
+  final Color textSecondary;
+  final Color textTertiary;
+  final Color textDisabled;
 
-  static const Color primary = primary600;
-  static const Color primaryHover = primary700;
-  static const Color primaryPressed = primary800;
+  final Color border;
+  final Color borderStrong;
 
-  static const Color success = success600;
-  static const Color warning = warning600;
-  static const Color danger = danger600;
-  static const Color info = info600;
+  final Color primary;
+  final Color primaryHover;
+  final Color primaryPressed;
+
+  final Color success;
+  final Color warning;
+  final Color danger;
+  final Color info;
+
+  const AppColorsTheme({
+    required this.background,
+    required this.surface,
+    required this.surfaceSecondary,
+    required this.textPrimary,
+    required this.textSecondary,
+    required this.textTertiary,
+    required this.textDisabled,
+    required this.border,
+    required this.borderStrong,
+    required this.primary,
+    required this.primaryHover,
+    required this.primaryPressed,
+    required this.success,
+    required this.warning,
+    required this.danger,
+    required this.info,
+  });
+
+  static const AppColorsTheme light = AppColorsTheme(
+    background: AppColors.neutral100,
+    surface: AppColors.neutral0,
+    surfaceSecondary: AppColors.neutral50,
+    textPrimary: AppColors.neutral900,
+    textSecondary: AppColors.neutral600,
+    textTertiary: AppColors.neutral500,
+    textDisabled: AppColors.neutral400,
+    border: AppColors.neutral200,
+    borderStrong: AppColors.neutral300,
+    primary: AppColors.primary600,
+    primaryHover: AppColors.primary700,
+    primaryPressed: AppColors.primary800,
+    success: AppColors.success600,
+    warning: AppColors.warning600,
+    danger: AppColors.danger600,
+    info: AppColors.info600,
+  );
+
+  static const AppColorsTheme dark = AppColorsTheme(
+    background: AppColors.neutral900,
+    surface: AppColors.neutral800,
+    surfaceSecondary: AppColors.neutral700,
+    textPrimary: AppColors.neutral50,
+    textSecondary: AppColors.neutral300,
+    textTertiary: AppColors.neutral400,
+    textDisabled: AppColors.neutral600,
+    border: AppColors.neutral700,
+    borderStrong: AppColors.neutral600,
+    primary: AppColors.primary500,
+    primaryHover: AppColors.primary400,
+    primaryPressed: AppColors.primary300,
+    success: AppColors.success500,
+    warning: AppColors.warning500,
+    danger: AppColors.danger500,
+    info: AppColors.info500,
+  );
+}
+
+extension AppColorsExt on BuildContext {
+  AppColorsTheme get colors => Theme.of(this).brightness == Brightness.dark
+      ? AppColorsTheme.dark
+      : AppColorsTheme.light;
 }
