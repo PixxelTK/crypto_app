@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  ApiClient({required this._baseUrl});
+  ApiClient({required this._baseUrl, required this._apiKey});
 
   final String _baseUrl;
+  final String _apiKey;
 
   Future<Map<String, dynamic>> get(
     String path, {
@@ -17,7 +18,7 @@ class ApiClient {
       ),
     );
 
-    final response = await http.get(uri);
+    final response = await http.get(uri, headers: {'x-access-token': _apiKey});
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
       throw Exception('HTTP ${response.statusCode}: ${response.body}');

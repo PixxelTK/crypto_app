@@ -1,5 +1,8 @@
 import 'package:crypto_app/features/coins/view/pages/coin_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
+import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   AppRouter._();
@@ -10,7 +13,12 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => const CoinListPage(),
+          builder: (_) => BlocProvider(
+            create: (context) => CoinListCubit(
+              context.read<CoinRepository>(),
+            )..loadCoins(),
+            child: const CoinListPage(),
+          ),
           settings: settings,
         );
 
