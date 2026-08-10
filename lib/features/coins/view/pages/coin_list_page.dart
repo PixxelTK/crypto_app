@@ -1,5 +1,6 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
+import 'package:crypto_app/features/coins/view/widgets/coin_search_bar.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
@@ -41,37 +42,81 @@ class _CoinListPageState extends State<CoinListPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final topPadding = MediaQuery.paddingOf(context).top;
 
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: RefreshIndicator.adaptive(
-          color: AppColors.textPrimary,
-          backgroundColor: AppColors.surface,
-          onRefresh: () async {
-            await context.read<CoinListCubit>().loadCoins(isRefresh: true);
-          },
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
+      body: RefreshIndicator.adaptive(
+        edgeOffset: topPadding,
+        color: AppColors.textPrimary,
+        backgroundColor: AppColors.surface,
+        onRefresh: () async {
+          await context.read<CoinListCubit>().loadCoins(isRefresh: true);
+        },
+        child: CustomScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              toolbarHeight: 0,
+              expandedHeight: 120,
+              backgroundColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              elevation: 0,
+              scrolledUnderElevation: 0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  padding: const EdgeInsets.only(
+                    left: AppSpacing.lg,
+                    right: AppSpacing.lg,
+                    bottom: 70,
                   ),
-                  child: Text(
-                    l10n.coinsPageTitle,
-                    style: AppTypography.headingMedium.copyWith(
-                      color: AppColors.textPrimary,
+                  alignment: Alignment.bottomLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: l10n.appNameFirst,
+                          style: AppTypography.headingLarge.copyWith(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' ${l10n.appNameSecond}',
+                          style: AppTypography.headingLarge.copyWith(
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const CoinList(),
-              ],
+              ),
+              bottom: const PreferredSize(
+                preferredSize: Size.fromHeight(60.0),
+                child: CoinSearchBar(),
+              ),
             ),
-          ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppSpacing.lg,
+                  right: AppSpacing.lg,
+                  top: AppSpacing.lg,
+                  bottom: AppSpacing.sm,
+                ),
+                child: Text(
+                  l10n.topCoinsTitle,
+                  style: AppTypography.headingSmall.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(child: CoinList()),
+          ],
         ),
       ),
     );

@@ -28,6 +28,7 @@ class CoinList extends StatelessWidget {
           return Column(
             children: [
               ListView.builder(
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.coins.length,
@@ -37,12 +38,8 @@ class CoinList extends StatelessWidget {
               ),
               if (state.isFetchingNext)
                 const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppSpacing.sm,
-                  ),
-                  child: Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                  child: Center(child: CircularProgressIndicator.adaptive()),
                 ),
             ],
           );

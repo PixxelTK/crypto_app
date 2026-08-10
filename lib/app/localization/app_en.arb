@@ -24,5 +24,7 @@
   "emptyCoinsSubtitle": "We couldn't find any coins at the moment. Please try again.",
   "retryButton": "Retry",
   "errorTitle": "Oops! Something went wrong",
-  "defaultErrorMessage": "An unexpected error occurred. Please try again."
+  "defaultErrorMessage": "An unexpected error occurred. Please try again.",
+  "appNameFirst": "Crypto",
+  "appNameSecond": "Coins"
 }

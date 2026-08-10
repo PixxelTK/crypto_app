@@ -49,4 +49,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get defaultErrorMessage =>
       'An unexpected error occurred. Please try again.';
+
+  @override
+  String get appNameFirst => 'Crypto';
+
+  @override
+  String get appNameSecond => 'Coins';
 }

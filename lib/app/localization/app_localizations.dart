@@ -165,6 +165,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred. Please try again.'**
   String get defaultErrorMessage;
+
+  /// No description provided for @appNameFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Crypto'**
+  String get appNameFirst;
+
+  /// No description provided for @appNameSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Coins'**
+  String get appNameSecond;
 }
 
 class _AppLocalizationsDelegate
