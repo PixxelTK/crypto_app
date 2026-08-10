@@ -8,6 +8,8 @@ import 'package:crypto_app/features/coins/data/repositories/coin_repository_impl
 import 'package:crypto_app/features/coins/data/sources/coin_data_source.dart';
 import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
 
+import 'localization/app_localizations.dart';
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -16,16 +18,15 @@ class App extends StatelessWidget {
     return RepositoryProvider<CoinRepository>(
       create: (context) => CoinRepositoryImpl(
         CoinDataSource(
-          ApiClient(
-            baseUrl: ApiConfig.baseUrl,
-            apiKey: ApiConfig.apiKey,
-          ),
+          ApiClient(baseUrl: ApiConfig.baseUrl, apiKey: ApiConfig.apiKey),
         ),
       ),
 
       child: MaterialApp(
         title: 'Crypto App',
         theme: AppTheme.light(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         initialRoute: AppRouter.home,
         onGenerateRoute: AppRouter.onGenerateRoute,
         debugShowCheckedModeBanner: false,

@@ -1,3 +1,4 @@
+import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/features/coins/view/pages/coin_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
@@ -14,9 +15,8 @@ class AppRouter {
       case home:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => CoinListCubit(
-              context.read<CoinRepository>(),
-            )..loadCoins(),
+            create: (context) =>
+                CoinListCubit(context.read<CoinRepository>())..loadCoins(),
             child: const CoinListPage(),
           ),
           settings: settings,
@@ -36,6 +36,8 @@ class _UnknownRoutePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Page not found')));
+    return Scaffold(
+      body: Center(child: Text(AppLocalizations.of(context)!.pageNotFound)),
+    );
   }
 }

@@ -1,0 +1,23 @@
+{
+  "appTitle": "Crypto App",
+  "coinsPageTitle": "Coins",
+  "searchCoinsHint": "Search coins...",
+  "topCoinsTitle": "Top Coins",
+  "priceLabel": "Price: {price}",
+  "@priceLabel": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "changeLabel": "Change: {change}%",
+  "@changeLabel": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      }
+    }
+  },
+  "pageNotFound": "Page not found"
+}
