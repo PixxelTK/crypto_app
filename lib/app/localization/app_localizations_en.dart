@@ -55,4 +55,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appNameSecond => 'Coins';
+
+  @override
+  String get searchResultsTitle => 'Search Results';
 }

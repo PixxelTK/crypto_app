@@ -7,8 +7,52 @@ import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
 
-class CoinSearchBar extends StatelessWidget {
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:crypto_app/core/utils/debouncer.dart';
+import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
+
+class CoinSearchBar extends StatefulWidget {
   const CoinSearchBar({super.key});
+
+  @override
+  State<CoinSearchBar> createState() => _CoinSearchBarState();
+}
+
+class _CoinSearchBarState extends State<CoinSearchBar> {
+  final _controller = TextEditingController();
+  final _debouncer = Debouncer(milliseconds: 1000);
+  bool _showClear = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      final isNotEmpty = _controller.text.isNotEmpty;
+      if (_showClear != isNotEmpty) {
+        setState(() => _showClear = isNotEmpty);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _debouncer.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    _debouncer.run(() {
+      if (mounted) {
+        context.read<CoinListCubit>().searchCoins(query);
+      }
+    });
+  }
+
+  void _onClear() {
+    _controller.clear();
+    context.read<CoinListCubit>().searchCoins('');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +83,8 @@ class CoinSearchBar extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: TextField(
+                controller: _controller,
+                onChanged: _onSearchChanged,
                 decoration: InputDecoration(
                   isDense: true,
                   hintText: AppLocalizations.of(context)!.searchCoinsHint,
@@ -50,6 +96,16 @@ class CoinSearchBar extends StatelessWidget {
                     color: context.colors.textSecondary,
                     size: AppSizes.iconMedium,
                   ),
+                  suffixIcon: _showClear
+                      ? IconButton(
+                          icon: Icon(
+                            Icons.close_rounded,
+                            color: context.colors.textSecondary,
+                            size: AppSizes.iconMedium,
+                          ),
+                          onPressed: _onClear,
+                        )
+                      : null,
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: AppSpacing.sm,

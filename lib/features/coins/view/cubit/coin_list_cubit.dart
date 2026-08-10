@@ -23,9 +23,24 @@ class CoinListCubit extends Cubit<CoinListState> {
   final CoinRepository repository;
   String? _nextCursor;
   bool _isLoading = false;
+  String _searchQuery = '';
+
+  bool get isSearching => _searchQuery.isNotEmpty;
+
+  void searchCoins(String query) {
+    if (_searchQuery == query) return;
+    _searchQuery = query;
+    _isLoading = false;
+    loadCoins(isRefresh: true);
+  }
 
   Future<void> loadCoins({bool isRefresh = false}) async {
     if (_isLoading) return;
+
+    if (!isRefresh && state is CoinListLoadedState && _nextCursor == null) {
+      return;
+    }
+
     _isLoading = true;
 
     try {
@@ -41,7 +56,11 @@ class CoinListCubit extends Cubit<CoinListState> {
         );
       }
 
-      final result = await repository.getCoins(cursor: _nextCursor, limit: 10);
+      final result = await repository.getCoins(
+        cursor: _nextCursor,
+        search: _searchQuery.isEmpty ? null : _searchQuery,
+        limit: 10,
+      );
       _nextCursor = result.nextCursor;
 
       if (isRefresh || state is! CoinListLoadedState) {

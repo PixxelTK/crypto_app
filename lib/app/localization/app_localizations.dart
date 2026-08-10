@@ -177,6 +177,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coins'**
   String get appNameSecond;
+
+  /// No description provided for @searchResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Results'**
+  String get searchResultsTitle;
 }
 
 class _AppLocalizationsDelegate

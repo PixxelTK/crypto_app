@@ -26,5 +26,6 @@
   "errorTitle": "Oops! Something went wrong",
   "defaultErrorMessage": "An unexpected error occurred. Please try again.",
   "appNameFirst": "Crypto",
-  "appNameSecond": "Coins"
+  "appNameSecond": "Coins",
+  "searchResultsTitle": "Search Results"
 }

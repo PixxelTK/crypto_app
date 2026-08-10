@@ -12,6 +12,8 @@ class CoinList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomPadding = MediaQuery.paddingOf(context).bottom;
+
     return BlocBuilder<CoinListCubit, CoinListState>(
       builder: (context, state) {
         if (state is CoinListLoadingState) {
@@ -28,7 +30,7 @@ class CoinList extends StatelessWidget {
           return Column(
             children: [
               ListView.builder(
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.only(bottom: bottomPadding),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.coins.length,

@@ -49,6 +49,11 @@ class _CoinListPageState extends State<CoinListPage> {
         edgeOffset: topPadding,
         color: context.colors.textPrimary,
         backgroundColor: context.colors.surface,
+        notificationPredicate: (notification) {
+          final isSearching = context.read<CoinListCubit>().isSearching;
+          return !isSearching &&
+              defaultScrollNotificationPredicate(notification);
+        },
         onRefresh: () async {
           await context.read<CoinListCubit>().loadCoins(isRefresh: true);
         },
@@ -120,11 +125,20 @@ class _CoinListPageState extends State<CoinListPage> {
                   top: AppSpacing.lg,
                   bottom: AppSpacing.sm,
                 ),
-                child: Text(
-                  l10n.topCoinsTitle,
-                  style: AppTypography.headingSmall.copyWith(
-                    color: context.colors.textPrimary,
-                  ),
+                child: BlocBuilder<CoinListCubit, CoinListState>(
+                  builder: (context, state) {
+                    final isSearching = context
+                        .read<CoinListCubit>()
+                        .isSearching;
+                    return Text(
+                      isSearching
+                          ? l10n.searchResultsTitle
+                          : l10n.topCoinsTitle,
+                      style: AppTypography.headingSmall.copyWith(
+                        color: context.colors.textPrimary,
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
