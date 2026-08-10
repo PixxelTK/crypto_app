@@ -20,7 +20,7 @@ class CoinList extends StatelessWidget {
           return const CoinListLoading();
         }
         if (state is CoinListErrorState) {
-          return CoinListError(message: state.message);
+          return CoinListError();
         }
 
         if (state is CoinListLoadedState) {

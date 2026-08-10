@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
 
 class CoinListError extends StatelessWidget {
-  const CoinListError({super.key, required this.message});
+  const CoinListError({super.key, this.message});
 
-  final String message;
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +45,19 @@ class CoinListError extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: AppSpacing.sm),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.massive),
-            child: Text(
-              message,
-              style: AppTypography.bodyMedium.copyWith(
-                color: context.colors.textSecondary,
+          if (message != null && message!.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.sm),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.massive),
+              child: Text(
+                message!,
+                style: AppTypography.bodyMedium.copyWith(
+                  color: context.colors.textSecondary,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
+          ],
           const SizedBox(height: AppSpacing.xl),
           FilledButton.icon(
             onPressed: () =>
