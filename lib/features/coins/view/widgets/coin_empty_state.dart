@@ -1,5 +1,6 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
+import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +24,14 @@ class CoinEmptyState extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(AppSpacing.lg),
+            padding: const EdgeInsets.all(AppSpacing.xxl),
             decoration: BoxDecoration(
               color: context.colors.surfaceSecondary,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.search_off_rounded,
-              size: 48,
+              size: AppSizes.iconExtraLarge,
               color: context.colors.textSecondary,
             ),
           ),
@@ -43,19 +44,25 @@ class CoinEmptyState extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppSpacing.sm),
-          Text(
-            l10n.emptyCoinsSubtitle,
-            style: AppTypography.bodyMedium.copyWith(
-              color: context.colors.textSecondary,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.massive),
+            child: Text(
+              l10n.emptyCoinsSubtitle,
+              style: AppTypography.bodyMedium.copyWith(
+                color: context.colors.textSecondary,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppSpacing.xl),
-          ElevatedButton.icon(
-            onPressed: () => context.read<CoinListCubit>().loadCoins(),
+          FilledButton.icon(
+            onPressed: () =>
+                context.read<CoinListCubit>().loadCoins(isRefresh: true),
             icon: const Icon(Icons.refresh_rounded),
             label: Text(l10n.retryButton),
-            style: ElevatedButton.styleFrom(
+            style: FilledButton.styleFrom(
+              backgroundColor: context.colors.surface,
+              foregroundColor: context.colors.textPrimary,
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.xl,
                 vertical: AppSpacing.md,
