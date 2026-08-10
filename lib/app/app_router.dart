@@ -1,4 +1,4 @@
-import 'package:crypto_app/features/home/view/pages/home_page.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list_page.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -10,7 +10,7 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
+          builder: (_) => const CoinListPage(),
           settings: settings,
         );
 
