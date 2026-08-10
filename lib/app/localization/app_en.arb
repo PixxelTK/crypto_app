@@ -19,5 +19,10 @@
       }
     }
   },
-  "pageNotFound": "Page not found"
+  "pageNotFound": "Page not found",
+  "emptyCoinsTitle": "No coins found",
+  "emptyCoinsSubtitle": "We couldn't find any coins at the moment. Please try again.",
+  "retryButton": "Retry",
+  "errorTitle": "Oops! Something went wrong",
+  "defaultErrorMessage": "An unexpected error occurred. Please try again."
 }

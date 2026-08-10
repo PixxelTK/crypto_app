@@ -48,7 +48,7 @@ class AppColors {
   static const Color info500 = Color(0xFF3B82F6);
   static const Color info600 = Color(0xFF2563EB);
 
-  static const Color background = neutral0;
+  static const Color background = neutral100;
   static const Color surface = neutral0;
   static const Color surfaceSecondary = neutral50;
 

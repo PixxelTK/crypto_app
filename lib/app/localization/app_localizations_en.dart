@@ -32,4 +32,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pageNotFound => 'Page not found';
+
+  @override
+  String get emptyCoinsTitle => 'No coins found';
+
+  @override
+  String get emptyCoinsSubtitle =>
+      'We couldn\'t find any coins at the moment. Please try again.';
+
+  @override
+  String get retryButton => 'Retry';
+
+  @override
+  String get errorTitle => 'Oops! Something went wrong';
+
+  @override
+  String get defaultErrorMessage =>
+      'An unexpected error occurred. Please try again.';
 }

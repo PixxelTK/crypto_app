@@ -135,6 +135,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Page not found'**
   String get pageNotFound;
+
+  /// No description provided for @emptyCoinsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No coins found'**
+  String get emptyCoinsTitle;
+
+  /// No description provided for @emptyCoinsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find any coins at the moment. Please try again.'**
+  String get emptyCoinsSubtitle;
+
+  /// No description provided for @retryButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryButton;
+
+  /// No description provided for @errorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get errorTitle;
+
+  /// No description provided for @defaultErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again.'**
+  String get defaultErrorMessage;
 }
 
 class _AppLocalizationsDelegate
