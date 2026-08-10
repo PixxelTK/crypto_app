@@ -23,15 +23,18 @@ class CoinListItem extends StatelessWidget {
 
     final change = coin.change ?? 0.0;
     final isPositive = change >= 0;
-    final changeColor = isPositive ? context.colors.success : context.colors.danger;
+    final changeColor = isPositive
+        ? context.colors.success
+        : context.colors.danger;
     final changeIcon = isPositive
         ? Icons.arrow_upward_rounded
         : Icons.arrow_downward_rounded;
 
     return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: AppSpacing.xs,
-        horizontal: AppSpacing.lg,
+      margin: const EdgeInsets.only(
+        bottom: AppSpacing.md,
+        right: AppSpacing.lg,
+        left: AppSpacing.lg,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
