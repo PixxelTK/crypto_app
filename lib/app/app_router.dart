@@ -1,6 +1,6 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
-import 'package:crypto_app/features/coins/view/pages/coin_detail_page.dart';
-import 'package:crypto_app/features/coins/view/pages/coin_list_page.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_detail/coin_detail_page.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list/coin_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';

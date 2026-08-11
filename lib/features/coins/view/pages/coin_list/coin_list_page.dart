@@ -1,13 +1,13 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
-import 'package:crypto_app/features/coins/view/widgets/coin_search_bar.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list/widgets/coin_search_bar.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/coin_list.dart';
-import '../widgets/top_coins_section.dart';
+import 'widgets/coin_list.dart';
+import 'widgets/top_coins_section.dart';
 
 class CoinListPage extends StatefulWidget {
   const CoinListPage({super.key});

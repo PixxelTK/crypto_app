@@ -1,9 +1,9 @@
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_empty_view.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_error_view.dart';
-import 'package:crypto_app/features/coins/view/widgets/coin_list_loading.dart';
-import 'package:crypto_app/features/coins/view/widgets/coin_list_item.dart';
-import 'package:crypto_app/features/coins/view/widgets/invite_friends_item.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list/widgets/coin_list_loading.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list/widgets/coin_list_item.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_list/widgets/invite_friends_item.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
