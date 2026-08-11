@@ -3,6 +3,7 @@ import 'package:crypto_app/features/coins/view/widgets/coin_empty_state.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_list_error.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_list_loading.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_list_item.dart';
+import 'package:crypto_app/features/coins/view/widgets/invite_friends_item.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,15 +34,28 @@ class CoinList extends StatelessWidget {
               ? state.coins
               : state.coins.skip(3).toList();
 
+          final listItems = <Widget>[];
+          for (int i = 0; i < displayCoins.length; i++) {
+            listItems.add(CoinListItem(coin: displayCoins[i]));
+            
+            final coinCount = i + 1;
+            if (coinCount >= 5 && coinCount % 5 == 0) {
+              final quotient = coinCount ~/ 5;
+              if ((quotient & (quotient - 1)) == 0) {
+                listItems.add(const InviteFriendsItem());
+              }
+            }
+          }
+
           return Column(
             children: [
               ListView.builder(
                 padding: EdgeInsets.only(bottom: bottomPadding),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: displayCoins.length,
+                itemCount: listItems.length,
                 itemBuilder: (context, index) {
-                  return CoinListItem(coin: displayCoins[index]);
+                  return listItems[index];
                 },
               ),
               if (state.isFetchingNext)

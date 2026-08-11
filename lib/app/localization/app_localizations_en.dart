@@ -58,4 +58,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchResultsTitle => 'Search Results';
+
+  @override
+  String get inviteFriendsTitle => 'Invite Friends';
+
+  @override
+  String get inviteFriendsSubtitle => 'Share this experience with your friends';
 }

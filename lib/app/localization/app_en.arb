@@ -27,5 +27,7 @@
   "defaultErrorMessage": "An unexpected error occurred. Please try again.",
   "appNameFirst": "Crypto",
   "appNameSecond": "Coins",
-  "searchResultsTitle": "Search Results"
+  "searchResultsTitle": "Search Results",
+  "inviteFriendsTitle": "Invite Friends",
+  "inviteFriendsSubtitle": "Share this experience with your friends"
 }

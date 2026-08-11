@@ -183,6 +183,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search Results'**
   String get searchResultsTitle;
+
+  /// No description provided for @inviteFriendsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Friends'**
+  String get inviteFriendsTitle;
+
+  /// No description provided for @inviteFriendsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share this experience with your friends'**
+  String get inviteFriendsSubtitle;
 }
 
 class _AppLocalizationsDelegate
