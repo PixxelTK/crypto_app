@@ -1,14 +1,17 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
+import 'package:crypto_app/features/coins/view/pages/coin_detail_page.dart';
 import 'package:crypto_app/features/coins/view/pages/coin_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
+import 'package:crypto_app/features/coins/view/cubit/coin_details_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   AppRouter._();
 
   static const String home = '/';
+  static const String coinDetail = '/coin_detail';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -18,6 +21,17 @@ class AppRouter {
             create: (context) =>
                 CoinListCubit(context.read<CoinRepository>())..loadCoins(),
             child: const CoinListPage(),
+          ),
+          settings: settings,
+        );
+
+      case coinDetail:
+        final uuid = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                CoinDetailsCubit(context.read<CoinRepository>())..setUuid(uuid),
+            child: const CoinDetailPage(),
           ),
           settings: settings,
         );

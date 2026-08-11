@@ -9,6 +9,7 @@ import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto_app/app/app_router.dart';
 
 class TopCoinsSection extends StatelessWidget {
   const TopCoinsSection({super.key, required this.coins});
@@ -53,6 +54,12 @@ class _Top1CoinCard extends StatelessWidget {
     final coinColor = coin.parsedColor;
 
     return CoinCardContainer(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRouter.coinDetail,
+          arguments: coin.uuid,
+        );
+      },
       coinColor: coinColor,
       margin: const EdgeInsets.only(
         bottom: AppSpacing.md,
@@ -140,6 +147,12 @@ class _TopCoinCompactCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CoinCardContainer(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRouter.coinDetail,
+          arguments: coin.uuid,
+        );
+      },
       coinColor: coin.parsedColor,
       padding: const EdgeInsets.all(AppSpacing.md),
       gradientAlphas: const [0.2, 0.08, 0.0],

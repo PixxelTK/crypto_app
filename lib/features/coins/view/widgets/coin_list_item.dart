@@ -9,6 +9,7 @@ import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto_app/app/app_router.dart';
 
 class CoinListItem extends StatelessWidget {
   const CoinListItem({super.key, required this.coin});
@@ -18,6 +19,12 @@ class CoinListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CoinCardContainer(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRouter.coinDetail,
+          arguments: coin.uuid,
+        );
+      },
       coinColor: coin.parsedColor,
       margin: const EdgeInsets.only(
         bottom: AppSpacing.md,
