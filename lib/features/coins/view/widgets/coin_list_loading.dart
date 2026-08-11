@@ -1,3 +1,4 @@
+import 'package:crypto_app/shared/widgets/pulse_loading.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/radius.dart';
@@ -24,25 +25,27 @@ class CoinListLoading extends StatelessWidget {
     );
 
     if (isSearching) {
-      return listSkeleton;
+      return PulseLoading(child: listSkeleton);
     }
 
-    return Column(
-      children: [
-        const _Top1CoinSkeleton(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-          child: Row(
-            children: const [
-              Expanded(child: _TopCoinCompactSkeleton()),
-              SizedBox(width: AppSpacing.md),
-              Expanded(child: _TopCoinCompactSkeleton()),
-            ],
+    return PulseLoading(
+      child: Column(
+        children: [
+          const _Top1CoinSkeleton(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: Row(
+              children: const [
+                Expanded(child: _TopCoinCompactSkeleton()),
+                SizedBox(width: AppSpacing.md),
+                Expanded(child: _TopCoinCompactSkeleton()),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: AppSpacing.md),
-        listSkeleton,
-      ],
+          const SizedBox(height: AppSpacing.md),
+          listSkeleton,
+        ],
+      ),
     );
   }
 }
