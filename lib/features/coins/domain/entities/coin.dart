@@ -7,6 +7,7 @@ class Coin {
     required this.iconUrl,
     this.color,
     this.change,
+    this.sparkline,
   });
 
   final String uuid;
@@ -16,4 +17,5 @@ class Coin {
   final String iconUrl;
   final String? color;
   final double? change;
+  final List<double>? sparkline;
 }

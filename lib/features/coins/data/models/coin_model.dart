@@ -9,6 +9,7 @@ class CoinModel {
     required this.iconUrl,
     this.color,
     this.change,
+    this.sparkline,
   });
 
   final String uuid;
@@ -18,6 +19,7 @@ class CoinModel {
   final String iconUrl;
   final String? color;
   final double? change;
+  final List<double>? sparkline;
 
   factory CoinModel.fromJson(Map<String, dynamic> json) {
     return CoinModel(
@@ -29,6 +31,12 @@ class CoinModel {
       color: json['color'] as String?,
       change: json['change'] != null
           ? double.tryParse(json['change'] as String)
+          : null,
+      sparkline: json['sparkline'] != null
+          ? (json['sparkline'] as List<dynamic>)
+                .map((e) => e != null ? double.tryParse(e.toString()) : null)
+                .whereType<double>()
+                .toList()
           : null,
     );
   }
@@ -42,6 +50,7 @@ class CoinModel {
       iconUrl: iconUrl,
       color: color,
       change: change,
+      sparkline: sparkline,
     );
   }
 }

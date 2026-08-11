@@ -3,6 +3,7 @@ import 'package:crypto_app/features/coins/view/utils/coin_ui_extension.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_avatar.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_card_container.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_percentage_change.dart';
+import 'package:crypto_app/features/coins/view/widgets/coin_sparkline.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
@@ -96,19 +97,35 @@ class _Top1CoinCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          Text(
-            '\$${coin.price.toStringAsFixed(2)}',
-            style: AppTypography.headingMedium.copyWith(
-              color: context.colors.textPrimary,
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: AppSpacing.xs),
-          CoinPercentageChange(
-            coin: coin,
-            iconSize: AppSizes.iconMedium,
-            textStyle: AppTypography.titleMedium,
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '\$${coin.price.toStringAsFixed(2)}',
+                      style: AppTypography.headingMedium.copyWith(
+                        color: context.colors.textPrimary,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    CoinPercentageChange(
+                      coin: coin,
+                      iconSize: AppSizes.iconMedium,
+                      textStyle: AppTypography.titleMedium,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 164,
+                height: 48,
+                child: CoinSparkline(coin: coin, lineWidth: 2),
+              ),
+            ],
           ),
         ],
       ),
@@ -152,28 +169,40 @@ class _TopCoinCompactCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          Text(
-            coin.name,
-            style: AppTypography.bodySmall.copyWith(
-              color: context.colors.textSecondary,
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: AppSpacing.xxs),
-          Text(
-            '\$${coin.price.toStringAsFixed(2)}',
-            style: AppTypography.titleMedium.copyWith(
-              color: context.colors.textPrimary,
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: AppSpacing.xs),
-          CoinPercentageChange(
-            coin: coin,
-            iconSize: AppSizes.iconSmall,
-            textStyle: AppTypography.labelMedium,
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      coin.name,
+                      style: AppTypography.bodySmall.copyWith(
+                        color: context.colors.textSecondary,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: AppSpacing.xxs),
+                    Text(
+                      '\$${coin.price.toStringAsFixed(2)}',
+                      style: AppTypography.titleMedium.copyWith(
+                        color: context.colors.textPrimary,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    CoinPercentageChange(
+                      coin: coin,
+                      iconSize: AppSizes.iconSmall,
+                      textStyle: AppTypography.labelMedium,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 64, height: 24, child: CoinSparkline(coin: coin)),
+            ],
           ),
         ],
       ),
