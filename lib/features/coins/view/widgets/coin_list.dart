@@ -27,15 +27,21 @@ class CoinList extends StatelessWidget {
           if (state.coins.isEmpty) {
             return const CoinEmptyState();
           }
+
+          final isSearching = context.read<CoinListCubit>().isSearching;
+          final displayCoins = isSearching
+              ? state.coins
+              : state.coins.skip(3).toList();
+
           return Column(
             children: [
               ListView.builder(
                 padding: EdgeInsets.only(bottom: bottomPadding),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: state.coins.length,
+                itemCount: displayCoins.length,
                 itemBuilder: (context, index) {
-                  return CoinListItem(coin: state.coins[index]);
+                  return CoinListItem(coin: displayCoins[index]);
                 },
               ),
               if (state.isFetchingNext)

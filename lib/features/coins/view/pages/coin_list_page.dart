@@ -7,6 +7,7 @@ import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/coin_list.dart';
+import '../widgets/top_coins_section.dart';
 
 class CoinListPage extends StatefulWidget {
   const CoinListPage({super.key});
@@ -117,13 +118,14 @@ class _CoinListPageState extends State<CoinListPage> {
                 child: CoinSearchBar(),
               ),
             ),
+
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: AppSpacing.lg,
                   right: AppSpacing.lg,
                   top: AppSpacing.lg,
-                  bottom: AppSpacing.sm,
+                  bottom: AppSpacing.lg,
                 ),
                 child: BlocBuilder<CoinListCubit, CoinListState>(
                   builder: (context, state) {
@@ -142,6 +144,20 @@ class _CoinListPageState extends State<CoinListPage> {
                 ),
               ),
             ),
+
+            SliverToBoxAdapter(
+              child: BlocBuilder<CoinListCubit, CoinListState>(
+                builder: (context, state) {
+                  final isSearching = context.read<CoinListCubit>().isSearching;
+                  if (isSearching || state is! CoinListLoadedState) {
+                    return const SizedBox.shrink();
+                  }
+                  final topCoins = state.coins.take(3).toList();
+                  return TopCoinsSection(coins: topCoins);
+                },
+              ),
+            ),
+
             const SliverToBoxAdapter(child: CoinList()),
           ],
         ),
