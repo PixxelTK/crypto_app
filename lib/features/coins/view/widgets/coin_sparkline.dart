@@ -3,6 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin.dart';
 import 'package:crypto_app/features/coins/view/utils/coin_ui_extension.dart';
 
+class SparklineChart extends StatelessWidget {
+  const SparklineChart({
+    super.key,
+    required this.data,
+    required this.lineColor,
+    this.lineWidth = 1.5,
+  });
+
+  final List<double> data;
+  final Color lineColor;
+  final double lineWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    if (data.isEmpty) return const SizedBox.shrink();
+
+    return CustomPaint(
+      painter: _SparklinePainter(
+        data: data,
+        lineColor: lineColor,
+        lineWidth: lineWidth,
+      ),
+    );
+  }
+}
+
 class CoinSparkline extends StatelessWidget {
   const CoinSparkline({super.key, required this.coin, this.lineWidth = 1.5});
 
@@ -15,12 +41,10 @@ class CoinSparkline extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return CustomPaint(
-      painter: _SparklinePainter(
-        data: coin.sparkline!,
-        lineColor: coin.getChangeColor(context),
-        lineWidth: lineWidth,
-      ),
+    return SparklineChart(
+      data: coin.sparkline!,
+      lineColor: coin.getChangeColor(context),
+      lineWidth: lineWidth,
     );
   }
 }
