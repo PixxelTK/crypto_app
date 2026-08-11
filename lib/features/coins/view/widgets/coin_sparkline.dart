@@ -75,7 +75,7 @@ class _SparklinePainter extends CustomPainter {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          lineColor.withValues(alpha: 0.5),
+          lineColor.withValues(alpha: 0.4),
           lineColor.withValues(alpha: 0.0),
         ],
       ).createShader(Rect.fromLTRB(0, 0, size.width, size.height));

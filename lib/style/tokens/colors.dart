@@ -106,9 +106,9 @@ class AppColorsTheme {
     primary: AppColors.primary600,
     primaryHover: AppColors.primary700,
     primaryPressed: AppColors.primary800,
-    success: AppColors.success600,
+    success: AppColors.success500,
     warning: AppColors.warning600,
-    danger: AppColors.danger600,
+    danger: AppColors.danger500,
     info: AppColors.info600,
   );
 

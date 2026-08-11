@@ -19,7 +19,7 @@ class InviteFriendsItem extends StatelessWidget {
           ShareParams(uri: Uri.parse('https://www.7solutions.co.th/jobs')),
         );
       },
-      coinColor: context.colors.primary,
+      coinColor: context.colors.surface,
       margin: const EdgeInsets.only(
         bottom: AppSpacing.md,
         right: AppSpacing.lg,
