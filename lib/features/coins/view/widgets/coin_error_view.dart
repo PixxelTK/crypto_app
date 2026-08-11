@@ -4,13 +4,16 @@ import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
 
-class CoinListError extends StatelessWidget {
-  const CoinListError({super.key, this.message});
+class CoinErrorView extends StatelessWidget {
+  const CoinErrorView({
+    super.key,
+    this.message,
+    this.onRetry,
+  });
 
   final String? message;
+  final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -58,21 +61,22 @@ class CoinListError extends StatelessWidget {
               ),
             ),
           ],
-          const SizedBox(height: AppSpacing.xl),
-          FilledButton.icon(
-            onPressed: () =>
-                context.read<CoinListCubit>().loadCoins(isRefresh: true),
-            icon: const Icon(Icons.refresh_rounded),
-            label: Text(l10n.retryButton),
-            style: FilledButton.styleFrom(
-              backgroundColor: context.colors.surface,
-              foregroundColor: context.colors.textPrimary,
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.xl,
-                vertical: AppSpacing.md,
+          if (onRetry != null) ...[
+            const SizedBox(height: AppSpacing.xl),
+            FilledButton.icon(
+              onPressed: onRetry,
+              icon: const Icon(Icons.refresh_rounded),
+              label: Text(l10n.retryButton),
+              style: FilledButton.styleFrom(
+                backgroundColor: context.colors.surface,
+                foregroundColor: context.colors.textPrimary,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.xl,
+                  vertical: AppSpacing.md,
+                ),
               ),
             ),
-          ),
+          ],
         ],
       ),
     );

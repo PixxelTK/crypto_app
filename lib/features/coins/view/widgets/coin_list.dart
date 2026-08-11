@@ -1,6 +1,6 @@
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
-import 'package:crypto_app/features/coins/view/widgets/coin_empty_state.dart';
-import 'package:crypto_app/features/coins/view/widgets/coin_list_error.dart';
+import 'package:crypto_app/features/coins/view/widgets/coin_empty_view.dart';
+import 'package:crypto_app/features/coins/view/widgets/coin_error_view.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_list_loading.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_list_item.dart';
 import 'package:crypto_app/features/coins/view/widgets/invite_friends_item.dart';
@@ -21,12 +21,18 @@ class CoinList extends StatelessWidget {
           return const CoinListLoading();
         }
         if (state is CoinListErrorState) {
-          return CoinListError();
+          return CoinErrorView(
+            onRetry: () =>
+                context.read<CoinListCubit>().loadCoins(isRefresh: true),
+          );
         }
 
         if (state is CoinListLoadedState) {
           if (state.coins.isEmpty) {
-            return const CoinEmptyState();
+            return CoinEmptyView(
+              onRetry: () =>
+                  context.read<CoinListCubit>().loadCoins(isRefresh: true),
+            );
           }
 
           final isSearching = context.read<CoinListCubit>().isSearching;
