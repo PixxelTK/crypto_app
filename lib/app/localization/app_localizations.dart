@@ -195,6 +195,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share this experience with your friends'**
   String get inviteFriendsSubtitle;
+
+  /// No description provided for @detailPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get detailPrice;
+
+  /// No description provided for @detailMarketCap.
+  ///
+  /// In en, this message translates to:
+  /// **'Market Cap'**
+  String get detailMarketCap;
+
+  /// No description provided for @detailDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get detailDescription;
+
+  /// No description provided for @detailNoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No description'**
+  String get detailNoDescription;
+
+  /// No description provided for @detailWebsiteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Website'**
+  String get detailWebsiteButton;
+
+  /// No description provided for @detailWebsiteLaunchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not launch website'**
+  String get detailWebsiteLaunchError;
+
+  /// No description provided for @errorPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorPrefix(String message);
 }
 
 class _AppLocalizationsDelegate

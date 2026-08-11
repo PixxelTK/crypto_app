@@ -29,5 +29,19 @@
   "appNameSecond": "Coins",
   "searchResultsTitle": "Search Results",
   "inviteFriendsTitle": "Invite Friends",
-  "inviteFriendsSubtitle": "Share this experience with your friends"
+  "inviteFriendsSubtitle": "Share this experience with your friends",
+  "detailPrice": "Price",
+  "detailMarketCap": "Market Cap",
+  "detailDescription": "Description",
+  "detailNoDescription": "No description",
+  "detailWebsiteButton": "Go to Website",
+  "detailWebsiteLaunchError": "Could not launch website",
+  "errorPrefix": "Error: {message}",
+  "@errorPrefix": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  }
 }

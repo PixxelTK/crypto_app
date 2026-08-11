@@ -64,4 +64,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get inviteFriendsSubtitle => 'Share this experience with your friends';
+
+  @override
+  String get detailPrice => 'Price';
+
+  @override
+  String get detailMarketCap => 'Market Cap';
+
+  @override
+  String get detailDescription => 'Description';
+
+  @override
+  String get detailNoDescription => 'No description';
+
+  @override
+  String get detailWebsiteButton => 'Go to Website';
+
+  @override
+  String get detailWebsiteLaunchError => 'Could not launch website';
+
+  @override
+  String errorPrefix(String message) {
+    return 'Error: $message';
+  }
 }
