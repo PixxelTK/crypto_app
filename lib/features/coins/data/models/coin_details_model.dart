@@ -1,31 +1,24 @@
+import 'package:crypto_app/features/coins/data/models/coin_model.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin_details.dart';
 
-class CoinDetailsModel {
+class CoinDetailsModel extends CoinModel {
   const CoinDetailsModel({
-    required this.uuid,
-    required this.name,
-    required this.description,
-    required this.symbol,
-    required this.links,
-    required this.price,
+    required super.uuid,
+    required super.name,
+    required super.symbol,
+    required super.price,
+    required super.iconUrl,
+    super.color,
+    super.change,
+    super.sparkline,
     required this.marketCap,
-    required this.iconUrl,
-    this.color,
-    this.change,
-    this.sparkline,
+    required this.links,
+    required this.description,
   });
 
-  final String uuid;
-  final String name;
   final String description;
-  final String symbol;
   final List<WebsiteLink> links;
-  final double price;
   final double marketCap;
-  final String iconUrl;
-  final String? color;
-  final double? change;
-  final List<double>? sparkline;
 
   factory CoinDetailsModel.fromJson(Map<String, dynamic> json) {
     return CoinDetailsModel(
@@ -52,6 +45,7 @@ class CoinDetailsModel {
     );
   }
 
+  @override
   CoinDetails toEntity() {
     return CoinDetails(
       uuid: uuid,

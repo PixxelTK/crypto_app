@@ -30,7 +30,6 @@ class CoinDataSource {
 
     final coins = coinsList
         .map((json) => CoinModel.fromJson(json as Map<String, dynamic>))
-        .toSet()
         .toList();
 
     final pagination = response['pagination'] as Map<String, dynamic>?;
