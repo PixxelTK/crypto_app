@@ -1,5 +1,5 @@
-import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin.dart';
+import 'package:crypto_app/features/coins/view/utils/coin_ui_extension.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/radius.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
@@ -14,21 +14,10 @@ class CoinListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color? coinColor;
-    if (coin.color != null && coin.color!.startsWith('#')) {
-      coinColor = Color(int.parse(coin.color!.replaceFirst('#', '0xff')));
-    }
-
-    AppLocalizations.of(context)!;
-
+    final coinColor = coin.parsedColor;
     final change = coin.change ?? 0.0;
-    final isPositive = change >= 0;
-    final changeColor = isPositive
-        ? context.colors.success
-        : context.colors.danger;
-    final changeIcon = isPositive
-        ? Icons.arrow_upward_rounded
-        : Icons.arrow_downward_rounded;
+    final changeColor = coin.getChangeColor(context);
+    final changeIcon = coin.changeIcon;
 
     return Container(
       margin: const EdgeInsets.only(
