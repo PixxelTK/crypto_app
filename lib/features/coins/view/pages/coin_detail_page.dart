@@ -58,6 +58,19 @@ class CoinDetailPage extends StatelessWidget {
                 children: [
                   CoinDetailHeader(details: details),
                   const SizedBox(height: 80),
+                  if (details.sparkline != null &&
+                      details.sparkline!.isNotEmpty) ...[
+                    SizedBox(
+                      width: double.infinity,
+                      height: 100,
+                      child: SparklineChart(
+                        data: details.sparkline!,
+                        lineColor: details.getChangeColor(context),
+                        lineWidth: 2,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.xl),
+                  ],
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSpacing.xl,
@@ -65,19 +78,6 @@ class CoinDetailPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (details.sparkline != null &&
-                            details.sparkline!.isNotEmpty) ...[
-                          SizedBox(
-                            width: double.infinity,
-                            height: 100,
-                            child: SparklineChart(
-                              data: details.sparkline!,
-                              lineColor: details.getChangeColor(context),
-                              lineWidth: 2,
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.xl),
-                        ],
                         CoinDetailSectionItem(
                           title: l10n.detailPrice,
                           child: Text(

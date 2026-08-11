@@ -67,7 +67,11 @@ class CoinListCubit extends Cubit<CoinListState> {
         emit(CoinListLoadedState(result.coins));
       } else {
         final currentCoins = (state as CoinListLoadedState).coins;
-        emit(CoinListLoadedState([...currentCoins, ...result.coins]));
+        final currentUuids = currentCoins.map((c) => c.uuid).toSet();
+        final newCoins = result.coins.where(
+          (c) => !currentUuids.contains(c.uuid),
+        );
+        emit(CoinListLoadedState([...currentCoins, ...newCoins]));
       }
     } catch (e) {
       if (state is! CoinListLoadedState) {
