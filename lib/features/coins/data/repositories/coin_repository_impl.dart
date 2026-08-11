@@ -1,4 +1,5 @@
 import 'package:crypto_app/features/coins/data/sources/coin_data_source.dart';
+import 'package:crypto_app/features/coins/domain/entities/coin_details.dart';
 
 import '../../domain/entities/coin.dart';
 import '../../domain/repositories/coin_repository.dart';
@@ -22,5 +23,11 @@ class CoinRepositoryImpl implements CoinRepository {
 
     final coins = result.coins.map((model) => model.toEntity()).toList();
     return (coins: coins, nextCursor: result.nextCursor);
+  }
+
+  @override
+  Future<CoinDetails> getCoinDetails(String uuid) async {
+    final result = await dataSource.getCoinDetails(uuid);
+    return result.toEntity();
   }
 }
