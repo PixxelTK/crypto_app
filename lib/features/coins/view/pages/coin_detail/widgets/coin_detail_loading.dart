@@ -13,122 +13,141 @@ class CoinDetailLoading extends StatelessWidget {
     final bannerHeight = 100 + MediaQuery.paddingOf(context).top;
 
     return PulseLoading(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
+      child: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: bannerHeight,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        context.colors.surface.withValues(alpha: 1),
-                        context.colors.surface.withValues(alpha: 0.8),
-                        context.colors.surface.withValues(alpha: 0.5),
-                        context.colors.surface.withValues(alpha: 0),
-                      ],
-                      stops: const [0.0, 0.4, 0.7, 1.0],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: AppSpacing.md,
-                  left: AppSpacing.md,
-                  right: AppSpacing.md,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: AppSpacing.md,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: context.colors.background,
-                        ),
-                        padding: const EdgeInsets.all(AppSpacing.sm),
-                        child: Container(
-                          width: AppSizes.iconExtraLarge * 2,
-                          height: AppSizes.iconExtraLarge * 2,
-                          decoration: BoxDecoration(
-                            color: context.colors.border,
-                            shape: BoxShape.circle,
-                          ),
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      height: bannerHeight,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            context.colors.surface.withValues(alpha: 1),
+                            context.colors.surface.withValues(alpha: 0.8),
+                            context.colors.surface.withValues(alpha: 0.5),
+                            context.colors.surface.withValues(alpha: 0),
+                          ],
+                          stops: const [0.0, 0.4, 0.7, 1.0],
                         ),
                       ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 150,
-                              height: 28,
+                    ),
+                    Positioned(
+                      bottom: AppSpacing.md,
+                      left: AppSpacing.md,
+                      right: AppSpacing.md,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        spacing: AppSpacing.md,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: context.colors.background,
+                            ),
+                            padding: const EdgeInsets.all(AppSpacing.sm),
+                            child: Container(
+                              width: AppSizes.iconExtraLarge * 2,
+                              height: AppSizes.iconExtraLarge * 2,
                               decoration: BoxDecoration(
                                 color: context.colors.border,
-                                borderRadius: BorderRadius.circular(
-                                  AppRadius.xs,
-                                ),
+                                shape: BoxShape.circle,
                               ),
                             ),
-                            const SizedBox(height: AppSpacing.xs),
-                            Container(
-                              width: 80,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                color: context.colors.border,
-                                borderRadius: BorderRadius.circular(
-                                  AppRadius.xs,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 150,
+                                  height: 28,
+                                  decoration: BoxDecoration(
+                                    color: context.colors.border,
+                                    borderRadius: BorderRadius.circular(
+                                      AppRadius.xs,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(height: AppSpacing.xs),
+                                Container(
+                                  width: 80,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: context.colors.border,
+                                    borderRadius: BorderRadius.circular(
+                                      AppRadius.xs,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: context.colors.surface,
+                          borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
+                      const _SectionLoading(width1: 120, width2: 180),
+                      const _SectionLoading(width1: 100, width2: 150),
+                      const _SectionLoading(
+                        width1: 120,
+                        width2: double.infinity,
+                        lines: 4,
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: AppSpacing.lg),
-            Padding(
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: context.colors.surface,
-                      borderRadius: BorderRadius.circular(AppRadius.md),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.xl),
-                  const _SectionLoading(width1: 120, width2: 180),
-                  const _SectionLoading(width1: 100, width2: 150),
-                  const _SectionLoading(
-                    width1: 120,
-                    width2: double.infinity,
-                    lines: 4,
-                  ),
+                  const SizedBox(height: AppSpacing.lg),
                   Container(
                     width: double.infinity,
                     height: AppSizes.buttonLargeHeight,
                     decoration: BoxDecoration(
                       color: context.colors.border,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.xxl),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

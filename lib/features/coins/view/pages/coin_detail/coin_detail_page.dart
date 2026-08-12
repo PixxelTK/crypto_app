@@ -54,78 +54,98 @@ class CoinDetailPage extends StatelessWidget {
           if (state is CoinDetailsLoadedState) {
             final details = state.details;
 
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CoinDetailHeader(details: details),
-                  const SizedBox(height: AppSpacing.lg),
-                  if (details.sparkline != null &&
-                      details.sparkline!.isNotEmpty) ...[
-                    SizedBox(
-                      width: double.infinity,
-                      height: 80,
-                      child: SparklineChart(
-                        data: details.sparkline!,
-                        lineColor: details.getChangeColor(context),
-                        lineWidth: 2,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xl),
-                  ],
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.lg,
-                    ),
-                    child: Column(
-                      spacing: AppSpacing.lg,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CoinDetailSectionItem(
-                          title: l10n.detailPrice,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '\$${details.price.toStringAsFixed(2)}',
-                                style: AppTypography.headingLarge.copyWith(
-                                  color: context.colors.textPrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
+            return CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CoinDetailHeader(details: details),
+                      const SizedBox(height: AppSpacing.lg),
+                      if (details.sparkline != null &&
+                          details.sparkline!.isNotEmpty) ...[
+                        SizedBox(
+                          width: double.infinity,
+                          height: 80,
+                          child: SparklineChart(
+                            data: details.sparkline!,
+                            lineColor: details.getChangeColor(context),
+                            lineWidth: 2,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xl),
+                      ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.lg,
+                        ),
+                        child: Column(
+                          spacing: AppSpacing.lg,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CoinDetailSectionItem(
+                              title: l10n.detailPrice,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '\$${details.price.toStringAsFixed(2)}',
+                                    style: AppTypography.headingLarge.copyWith(
+                                      color: context.colors.textPrimary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  CoinPercentageChange(
+                                    coin: details,
+                                    iconSize: AppSizes.iconSmall,
+                                    textStyle: AppTypography.titleMedium
+                                        .copyWith(
+                                          color: context.colors.textPrimary,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ],
                               ),
-                              CoinPercentageChange(
-                                coin: details,
-                                iconSize: AppSizes.iconSmall,
-                                textStyle: AppTypography.titleMedium.copyWith(
+                            ),
+                            CoinDetailSectionItem(
+                              title: l10n.detailMarketCap,
+                              child: Text(
+                                '\$${formatMarketCap(details.marketCap)}',
+                                style: AppTypography.titleLarge.copyWith(
                                   color: context.colors.textPrimary,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        CoinDetailSectionItem(
-                          title: l10n.detailMarketCap,
-                          child: Text(
-                            '\$${formatMarketCap(details.marketCap)}',
-                            style: AppTypography.titleLarge.copyWith(
-                              color: context.colors.textPrimary,
-                              fontWeight: FontWeight.w600,
                             ),
-                          ),
-                        ),
-                        CoinDetailSectionItem(
-                          title: l10n.detailDescription,
-                          child: Text(
-                            details.description.isNotEmpty
-                                ? details.description
-                                : l10n.detailNoDescription,
-                            style: AppTypography.bodyMedium.copyWith(
-                              color: context.colors.textPrimary,
-                              height: 1.5,
+                            CoinDetailSectionItem(
+                              title: l10n.detailDescription,
+                              child: Text(
+                                details.description.isNotEmpty
+                                    ? details.description
+                                    : l10n.detailNoDescription,
+                                style: AppTypography.bodyMedium.copyWith(
+                                  color: context.colors.textPrimary,
+                                  height: 1.5,
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SizedBox(height: AppSpacing.lg),
                         if (details.websiteUrl != null)
                           CoinDetailWebsiteButton(
                             websiteUrl: details.websiteUrl!,
@@ -134,8 +154,8 @@ class CoinDetailPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           }
 
