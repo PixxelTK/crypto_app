@@ -1,6 +1,7 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
 import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
 import 'package:crypto_app/features/coins/view/pages/coin_list/widgets/coin_search_bar.dart';
+import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
@@ -83,31 +84,33 @@ class _CoinListPageState extends State<CoinListPage> {
                   ),
                 ),
                 child: FlexibleSpaceBar(
-                  background: Container(
-                    padding: const EdgeInsets.only(
-                      left: AppSpacing.lg,
-                      right: AppSpacing.lg,
-                      bottom: 70,
-                    ),
-                    alignment: Alignment.bottomLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: l10n.appNameFirst,
-                            style: AppTypography.headingLarge.copyWith(
-                              color: context.colors.primary,
-                              fontWeight: FontWeight.bold,
+                  background: MaxWidthContainer(
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                        left: AppSpacing.lg,
+                        right: AppSpacing.lg,
+                        bottom: 70,
+                      ),
+                      alignment: Alignment.bottomLeft,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: l10n.appNameFirst,
+                              style: AppTypography.headingLarge.copyWith(
+                                color: context.colors.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: ' ${l10n.appNameSecond}',
-                            style: AppTypography.headingLarge.copyWith(
-                              color: context.colors.textPrimary,
-                              fontWeight: FontWeight.w300,
+                            TextSpan(
+                              text: ' ${l10n.appNameSecond}',
+                              style: AppTypography.headingLarge.copyWith(
+                                color: context.colors.textPrimary,
+                                fontWeight: FontWeight.w300,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -115,50 +118,59 @@ class _CoinListPageState extends State<CoinListPage> {
               ),
               bottom: const PreferredSize(
                 preferredSize: Size.fromHeight(60.0),
-                child: CoinSearchBar(),
+                child: MaxWidthContainer(child: CoinSearchBar()),
               ),
             ),
 
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: AppSpacing.lg,
-                  right: AppSpacing.lg,
-                  top: AppSpacing.lg,
-                  bottom: AppSpacing.lg,
+              child: MaxWidthContainer(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: AppSpacing.lg,
+                    right: AppSpacing.lg,
+                    top: AppSpacing.lg,
+                    bottom: AppSpacing.lg,
+                  ),
+                  child: BlocBuilder<CoinListCubit, CoinListState>(
+                    builder: (context, state) {
+                      final isSearching = context
+                          .read<CoinListCubit>()
+                          .isSearching;
+                      return Text(
+                        textAlign: TextAlign.left,
+                        isSearching
+                            ? l10n.searchResultsTitle
+                            : l10n.topCoinsTitle,
+                        style: AppTypography.headingSmall.copyWith(
+                          color: context.colors.textPrimary,
+                        ),
+                      );
+                    },
+                  ),
                 ),
+              ),
+            ),
+
+            SliverToBoxAdapter(
+              child: MaxWidthContainer(
                 child: BlocBuilder<CoinListCubit, CoinListState>(
                   builder: (context, state) {
                     final isSearching = context
                         .read<CoinListCubit>()
                         .isSearching;
-                    return Text(
-                      isSearching
-                          ? l10n.searchResultsTitle
-                          : l10n.topCoinsTitle,
-                      style: AppTypography.headingSmall.copyWith(
-                        color: context.colors.textPrimary,
-                      ),
-                    );
+                    if (isSearching || state is! CoinListLoadedState) {
+                      return const SizedBox.shrink();
+                    }
+                    final topCoins = state.coins.take(3).toList();
+                    return TopCoinsSection(coins: topCoins);
                   },
                 ),
               ),
             ),
 
-            SliverToBoxAdapter(
-              child: BlocBuilder<CoinListCubit, CoinListState>(
-                builder: (context, state) {
-                  final isSearching = context.read<CoinListCubit>().isSearching;
-                  if (isSearching || state is! CoinListLoadedState) {
-                    return const SizedBox.shrink();
-                  }
-                  final topCoins = state.coins.take(3).toList();
-                  return TopCoinsSection(coins: topCoins);
-                },
-              ),
+            const SliverToBoxAdapter(
+              child: MaxWidthContainer(child: CoinList()),
             ),
-
-            const SliverToBoxAdapter(child: CoinList()),
           ],
         ),
       ),
