@@ -86,7 +86,6 @@ class _CoinSearchBarState extends State<CoinSearchBar> {
                 controller: _controller,
                 onChanged: _onSearchChanged,
                 decoration: InputDecoration(
-                  isDense: true,
                   hintText: AppLocalizations.of(context)!.searchCoinsHint,
                   hintStyle: AppTypography.bodyMedium.copyWith(
                     color: context.colors.textTertiary,
@@ -107,9 +106,6 @@ class _CoinSearchBarState extends State<CoinSearchBar> {
                         )
                       : null,
                   border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: AppSpacing.sm,
-                  ),
                 ),
               ),
             ),
