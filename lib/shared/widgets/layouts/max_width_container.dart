@@ -1,3 +1,4 @@
+import 'package:crypto_app/core/utils/responsive_extension.dart';
 import 'package:crypto_app/style/tokens/breakpoints.dart';
 import 'package:flutter/material.dart';
 
@@ -5,17 +6,14 @@ class MaxWidthContainer extends StatelessWidget {
   const MaxWidthContainer({
     super.key,
     required this.child,
-    this.maxWidth = AppBreakpoints.maxWidth,
+    this.maxWidth,
     this.alignment = Alignment.topCenter,
     this.padding,
   });
 
   final Widget child;
-
-  final double maxWidth;
-
+  final double? maxWidth;
   final AlignmentGeometry alignment;
-
   final EdgeInsetsGeometry? padding;
 
   @override
@@ -29,7 +27,13 @@ class MaxWidthContainer extends StatelessWidget {
     return Align(
       alignment: alignment,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: maxWidth),
+        constraints: BoxConstraints(
+          maxWidth:
+              maxWidth ??
+              (context.screenWidth <= AppBreakpoints.desktop
+                  ? AppBreakpoints.tablet
+                  : AppBreakpoints.maxWidth),
+        ),
         child: SizedBox(width: double.infinity, child: content),
       ),
     );

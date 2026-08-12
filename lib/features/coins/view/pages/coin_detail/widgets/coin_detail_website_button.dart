@@ -1,4 +1,5 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
+import 'package:crypto_app/core/utils/responsive_extension.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/radius.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
@@ -35,7 +36,9 @@ class CoinDetailWebsiteButton extends StatelessWidget {
           foregroundColor: context.colors.textPrimary,
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.full),
+            borderRadius: BorderRadius.circular(
+              context.isTabletOrLarger ? AppRadius.lg : AppRadius.full,
+            ),
           ),
         ),
         child: Row(

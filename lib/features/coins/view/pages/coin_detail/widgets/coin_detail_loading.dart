@@ -1,3 +1,5 @@
+import 'package:crypto_app/core/utils/responsive_extension.dart';
+import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
 import 'package:crypto_app/shared/widgets/pulse_loading.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/radius.dart';
@@ -44,83 +46,87 @@ class CoinDetailLoading extends StatelessWidget {
                       bottom: AppSpacing.md,
                       left: AppSpacing.md,
                       right: AppSpacing.md,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: AppSpacing.md,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.colors.background,
-                            ),
-                            padding: const EdgeInsets.all(AppSpacing.sm),
-                            child: Container(
-                              width: AppSizes.iconExtraLarge * 2,
-                              height: AppSizes.iconExtraLarge * 2,
+                      child: MaxWidthContainer(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          spacing: AppSpacing.md,
+                          children: [
+                            Container(
                               decoration: BoxDecoration(
-                                color: context.colors.border,
                                 shape: BoxShape.circle,
+                                color: context.colors.background,
+                              ),
+                              padding: const EdgeInsets.all(AppSpacing.sm),
+                              child: Container(
+                                width: AppSizes.iconExtraLarge * 2,
+                                height: AppSizes.iconExtraLarge * 2,
+                                decoration: BoxDecoration(
+                                  color: context.colors.border,
+                                  shape: BoxShape.circle,
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 150,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                    color: context.colors.border,
-                                    borderRadius: BorderRadius.circular(
-                                      AppRadius.xs,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 150,
+                                    height: 28,
+                                    decoration: BoxDecoration(
+                                      color: context.colors.border,
+                                      borderRadius: BorderRadius.circular(
+                                        AppRadius.xs,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: AppSpacing.xs),
-                                Container(
-                                  width: 80,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    color: context.colors.border,
-                                    borderRadius: BorderRadius.circular(
-                                      AppRadius.xs,
+                                  const SizedBox(height: AppSpacing.xs),
+                                  Container(
+                                    width: 80,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      color: context.colors.border,
+                                      borderRadius: BorderRadius.circular(
+                                        AppRadius.xs,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: context.colors.surface,
-                          borderRadius: BorderRadius.circular(AppRadius.md),
+                MaxWidthContainer(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: context.colors.surface,
+                            borderRadius: BorderRadius.circular(AppRadius.md),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: AppSpacing.xl),
-                      const _SectionLoading(width1: 120, width2: 180),
-                      const _SectionLoading(width1: 100, width2: 150),
-                      const _SectionLoading(
-                        width1: 120,
-                        width2: double.infinity,
-                        lines: 4,
-                      ),
-                    ],
+                        const SizedBox(height: AppSpacing.xl),
+                        const _SectionLoading(width1: 120, width2: 180),
+                        const _SectionLoading(width1: 100, width2: 150),
+                        const _SectionLoading(
+                          width1: 120,
+                          width2: double.infinity,
+                          lines: 4,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -128,22 +134,28 @@ class CoinDetailLoading extends StatelessWidget {
           ),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const SizedBox(height: AppSpacing.lg),
-                  Container(
-                    width: double.infinity,
-                    height: AppSizes.buttonLargeHeight,
-                    decoration: BoxDecoration(
-                      color: context.colors.border,
-                      borderRadius: BorderRadius.circular(AppRadius.full),
+            child: MaxWidthContainer(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const SizedBox(height: AppSpacing.lg),
+                    Container(
+                      width: double.infinity,
+                      height: AppSizes.buttonLargeHeight,
+                      decoration: BoxDecoration(
+                        color: context.colors.border,
+                        borderRadius: BorderRadius.circular(
+                          context.isTabletOrLarger
+                              ? AppRadius.lg
+                              : AppRadius.full,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: AppSpacing.xxl),
-                ],
+                    const SizedBox(height: AppSpacing.xxl),
+                  ],
+                ),
               ),
             ),
           ),

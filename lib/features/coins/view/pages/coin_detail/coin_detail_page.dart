@@ -1,4 +1,6 @@
 import 'package:crypto_app/features/coins/view/widgets/coin_percentage_change.dart';
+import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
+import 'package:crypto_app/style/tokens/breakpoints.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,10 +45,12 @@ class CoinDetailPage extends StatelessWidget {
           }
 
           if (state is CoinDetailsErrorState) {
-            return Center(
-              child: CoinErrorView(
-                onRetry: () =>
-                    context.read<CoinDetailsCubit>().loadCoinDetails(),
+            return MaxWidthContainer(
+              child: Center(
+                child: CoinErrorView(
+                  onRetry: () =>
+                      context.read<CoinDetailsCubit>().loadCoinDetails(),
+                ),
               ),
             );
           }
@@ -65,72 +69,78 @@ class CoinDetailPage extends StatelessWidget {
                       const SizedBox(height: AppSpacing.lg),
                       if (details.sparkline != null &&
                           details.sparkline!.isNotEmpty) ...[
-                        SizedBox(
-                          width: double.infinity,
-                          height: 80,
-                          child: SparklineChart(
-                            data: details.sparkline!,
-                            lineColor: details.getChangeColor(context),
-                            lineWidth: 2,
+                        MaxWidthContainer(
+                          maxWidth: AppBreakpoints.maxWidth,
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 80,
+                            child: SparklineChart(
+                              data: details.sparkline!,
+                              lineColor: details.getChangeColor(context),
+                              lineWidth: 2,
+                            ),
                           ),
                         ),
                         const SizedBox(height: AppSpacing.xl),
                       ],
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.lg,
-                        ),
-                        child: Column(
-                          spacing: AppSpacing.lg,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CoinDetailSectionItem(
-                              title: l10n.detailPrice,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '\$${details.price.toStringAsFixed(2)}',
-                                    style: AppTypography.headingLarge.copyWith(
-                                      color: context.colors.textPrimary,
-                                      fontWeight: FontWeight.bold,
+                      MaxWidthContainer(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.lg,
+                          ),
+                          child: Column(
+                            spacing: AppSpacing.lg,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CoinDetailSectionItem(
+                                title: l10n.detailPrice,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '\$${details.price.toStringAsFixed(2)}',
+                                      style: AppTypography.headingLarge
+                                          .copyWith(
+                                            color: context.colors.textPrimary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
-                                  ),
-                                  CoinPercentageChange(
-                                    coin: details,
-                                    iconSize: AppSizes.iconSmall,
-                                    textStyle: AppTypography.titleMedium
-                                        .copyWith(
-                                          color: context.colors.textPrimary,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            CoinDetailSectionItem(
-                              title: l10n.detailMarketCap,
-                              child: Text(
-                                '\$${formatMarketCap(details.marketCap)}',
-                                style: AppTypography.titleLarge.copyWith(
-                                  color: context.colors.textPrimary,
-                                  fontWeight: FontWeight.w600,
+                                    CoinPercentageChange(
+                                      coin: details,
+                                      iconSize: AppSizes.iconSmall,
+                                      textStyle: AppTypography.titleMedium
+                                          .copyWith(
+                                            color: context.colors.textPrimary,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            CoinDetailSectionItem(
-                              title: l10n.detailDescription,
-                              child: Text(
-                                details.description.isNotEmpty
-                                    ? details.description
-                                    : l10n.detailNoDescription,
-                                style: AppTypography.bodyMedium.copyWith(
-                                  color: context.colors.textPrimary,
-                                  height: 1.5,
+                              CoinDetailSectionItem(
+                                title: l10n.detailMarketCap,
+                                child: Text(
+                                  '\$${formatMarketCap(details.marketCap)}',
+                                  style: AppTypography.titleLarge.copyWith(
+                                    color: context.colors.textPrimary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              CoinDetailSectionItem(
+                                title: l10n.detailDescription,
+                                child: Text(
+                                  details.description.isNotEmpty
+                                      ? details.description
+                                      : l10n.detailNoDescription,
+                                  style: AppTypography.bodyMedium.copyWith(
+                                    color: context.colors.textPrimary,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -138,20 +148,22 @@ class CoinDetailPage extends StatelessWidget {
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.lg,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const SizedBox(height: AppSpacing.lg),
-                        if (details.websiteUrl != null)
-                          CoinDetailWebsiteButton(
-                            websiteUrl: details.websiteUrl!,
-                          ),
-                        const SizedBox(height: AppSpacing.xxl),
-                      ],
+                  child: MaxWidthContainer(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.lg,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const SizedBox(height: AppSpacing.lg),
+                          if (details.websiteUrl != null)
+                            CoinDetailWebsiteButton(
+                              websiteUrl: details.websiteUrl!,
+                            ),
+                          const SizedBox(height: AppSpacing.xxl),
+                        ],
+                      ),
                     ),
                   ),
                 ),
