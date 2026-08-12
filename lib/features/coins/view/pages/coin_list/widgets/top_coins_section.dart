@@ -1,3 +1,4 @@
+import 'package:crypto_app/core/utils/responsive_extension.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin.dart';
 import 'package:crypto_app/features/coins/view/utils/coin_ui_extension.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_avatar.dart';
@@ -55,10 +56,9 @@ class _Top1CoinCard extends StatelessWidget {
 
     return CoinCardContainer(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          AppRouter.coinDetail,
-          arguments: coin.uuid,
-        );
+        Navigator.of(
+          context,
+        ).pushNamed(AppRouter.coinDetail, arguments: coin.uuid);
       },
       coinColor: coinColor,
       margin: const EdgeInsets.only(
@@ -128,7 +128,7 @@ class _Top1CoinCard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 164,
+                width: context.isTabletOrLarger ? 342 : 164,
                 height: 48,
                 child: CoinSparkline(coin: coin, lineWidth: 2),
               ),
@@ -148,10 +148,9 @@ class _TopCoinCompactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CoinCardContainer(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          AppRouter.coinDetail,
-          arguments: coin.uuid,
-        );
+        Navigator.of(
+          context,
+        ).pushNamed(AppRouter.coinDetail, arguments: coin.uuid);
       },
       coinColor: coin.parsedColor,
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -214,7 +213,11 @@ class _TopCoinCompactCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 64, height: 24, child: CoinSparkline(coin: coin)),
+              SizedBox(
+                width: context.isTabletOrLarger ? 164 : 64,
+                height: 24,
+                child: CoinSparkline(coin: coin),
+              ),
             ],
           ),
         ],

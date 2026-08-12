@@ -1,3 +1,4 @@
+import 'package:crypto_app/core/utils/responsive_extension.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin.dart';
 import 'package:crypto_app/features/coins/view/utils/coin_ui_extension.dart';
 import 'package:crypto_app/features/coins/view/widgets/coin_avatar.dart';
@@ -20,10 +21,9 @@ class CoinListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CoinCardContainer(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          AppRouter.coinDetail,
-          arguments: coin.uuid,
-        );
+        Navigator.of(
+          context,
+        ).pushNamed(AppRouter.coinDetail, arguments: coin.uuid);
       },
       coinColor: coin.parsedColor,
       margin: const EdgeInsets.only(
@@ -71,7 +71,7 @@ class CoinListItem extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 60,
+            width: context.isTabletOrLarger ? 148 : 60,
             height: 32,
             child: CoinSparkline(coin: coin),
           ),
