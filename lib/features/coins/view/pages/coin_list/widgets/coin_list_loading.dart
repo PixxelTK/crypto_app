@@ -32,10 +32,10 @@ class CoinListLoading extends StatelessWidget {
       child: Column(
         children: [
           const _Top1CoinSkeleton(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
             child: Row(
-              children: const [
+              children: [
                 Expanded(child: _TopCoinCompactSkeleton()),
                 SizedBox(width: AppSpacing.md),
                 Expanded(child: _TopCoinCompactSkeleton()),
@@ -62,7 +62,7 @@ class _CoinListItemSkeleton extends StatelessWidget {
         right: AppSpacing.lg,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppRadius.lg)),
         color: context.colors.surface,
       ),
       child: Padding(
@@ -147,7 +147,7 @@ class _Top1CoinSkeleton extends StatelessWidget {
         right: AppSpacing.lg,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppRadius.lg)),
         color: context.colors.surface,
       ),
       child: Padding(
@@ -222,7 +222,7 @@ class _TopCoinCompactSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppRadius.lg)),
         color: context.colors.surface,
       ),
       padding: const EdgeInsets.all(AppSpacing.md),

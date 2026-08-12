@@ -66,12 +66,16 @@ class _CoinCardContainerState extends State<CoinCardContainer> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 150),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(AppRadius.lg),
+                ),
                 color: _getSurfaceColor(context),
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(AppRadius.lg)),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppRadius.lg),
+                  ),
                   gradient: widget.coinColor == null
                       ? null
                       : LinearGradient(
