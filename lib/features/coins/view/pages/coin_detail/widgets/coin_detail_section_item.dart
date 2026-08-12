@@ -15,21 +15,18 @@ class CoinDetailSectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: AppTypography.labelLarge.copyWith(
-              color: context.colors.textSecondary,
-            ),
+    return Column(
+      spacing: AppSpacing.xs,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: AppTypography.labelLarge.copyWith(
+            color: context.colors.textSecondary,
           ),
-          const SizedBox(height: AppSpacing.xs),
-          child,
-        ],
-      ),
+        ),
+        child,
+      ],
     );
   }
 }

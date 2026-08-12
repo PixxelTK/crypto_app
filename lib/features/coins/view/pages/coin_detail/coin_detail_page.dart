@@ -1,3 +1,5 @@
+import 'package:crypto_app/features/coins/view/widgets/coin_percentage_change.dart';
+import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:crypto_app/app/localization/app_localizations.dart';
@@ -57,12 +59,12 @@ class CoinDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CoinDetailHeader(details: details),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: AppSpacing.lg),
                   if (details.sparkline != null &&
                       details.sparkline!.isNotEmpty) ...[
                     SizedBox(
                       width: double.infinity,
-                      height: 100,
+                      height: 80,
                       child: SparklineChart(
                         data: details.sparkline!,
                         lineColor: details.getChangeColor(context),
@@ -73,19 +75,33 @@ class CoinDetailPage extends StatelessWidget {
                   ],
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.xl,
+                      horizontal: AppSpacing.lg,
                     ),
                     child: Column(
+                      spacing: AppSpacing.lg,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CoinDetailSectionItem(
                           title: l10n.detailPrice,
-                          child: Text(
-                            '\$${details.price.toStringAsFixed(2)}',
-                            style: AppTypography.headingLarge.copyWith(
-                              color: context.colors.textPrimary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '\$${details.price.toStringAsFixed(2)}',
+                                style: AppTypography.headingLarge.copyWith(
+                                  color: context.colors.textPrimary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              CoinPercentageChange(
+                                coin: details,
+                                iconSize: AppSizes.iconSmall,
+                                textStyle: AppTypography.titleMedium.copyWith(
+                                  color: context.colors.textPrimary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         CoinDetailSectionItem(

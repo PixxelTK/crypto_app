@@ -15,7 +15,7 @@ class CoinDetailHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final coinColor = details.parsedColor ?? context.colors.primary;
-    final bannerHeight = 60 + MediaQuery.paddingOf(context).top;
+    final bannerHeight = 100 + MediaQuery.paddingOf(context).top;
 
     return Stack(
       clipBehavior: Clip.none,
@@ -27,62 +27,61 @@ class CoinDetailHeader extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [coinColor.withValues(alpha: 0.7), coinColor],
-              stops: const [0.0, 1.0],
+              colors: [
+                coinColor.withValues(alpha: 0.7),
+                coinColor.withValues(alpha: 0.3),
+                coinColor.withValues(alpha: 0.1),
+                coinColor.withValues(alpha: 0),
+              ],
+              stops: const [0.0, 0.4, 0.7, 1.0],
             ),
           ),
         ),
         Positioned(
-          bottom: -22,
-          left: AppSpacing.xl,
-          right: AppSpacing.xl,
-          child: FractionalTranslation(
-            translation: const Offset(0, 0.5),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: context.colors.background,
-                  ),
-                  padding: const EdgeInsets.all(AppSpacing.sm),
-                  child: CoinAvatar(
-                    iconUrl: details.iconUrl,
-                    coinColor: details.parsedColor,
-                    radius: AppSizes.iconExtraLarge * 1.2,
-                    imageSize: AppSizes.iconExtraLarge * 2.4,
-                    fallbackIconSize: AppSizes.iconExtraLarge,
-                  ),
+          bottom: AppSpacing.md,
+          left: AppSpacing.md,
+          right: AppSpacing.md,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: AppSpacing.md,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.background,
                 ),
-                const SizedBox(width: AppSpacing.md),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          details.name,
-                          style: AppTypography.headingMedium.copyWith(
-                            color: context.colors.textPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          details.symbol,
-                          style: AppTypography.titleMedium.copyWith(
-                            color: context.colors.textSecondary,
-                          ),
-                        ),
-                      ],
+                padding: const EdgeInsets.all(AppSpacing.sm),
+                child: CoinAvatar(
+                  iconUrl: details.iconUrl,
+                  coinColor: details.parsedColor,
+                  radius: AppSizes.iconExtraLarge,
+                  imageSize: AppSizes.iconExtraLarge * 2,
+                  fallbackIconSize: AppSizes.iconExtraLarge * 2,
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      details.name,
+                      style: AppTypography.headingMedium.copyWith(
+                        color: context.colors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
+                    Text(
+                      details.symbol,
+                      style: AppTypography.titleMedium.copyWith(
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],
