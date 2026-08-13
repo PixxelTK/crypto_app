@@ -76,6 +76,13 @@ class CoinListCubit extends Cubit<CoinListState> {
     } catch (e) {
       if (state is! CoinListLoadedState) {
         emit(CoinListErrorState(e.toString()));
+      } else {
+        emit(
+          CoinListLoadedState(
+            (state as CoinListLoadedState).coins,
+            isFetchingNext: false,
+          ),
+        );
       }
     } finally {
       _isLoading = false;
