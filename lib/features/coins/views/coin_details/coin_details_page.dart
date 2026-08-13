@@ -12,7 +12,7 @@ import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_detail
 import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_detail_section_item.dart';
 import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_detail_website_button.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_error_view.dart';
-import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_sparkline.dart';
+import 'package:crypto_app/features/coins/views/widgets/coin_sparkline.dart';
 import 'package:crypto_app/features/coins/views/utils/market_cap_formatter.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
@@ -70,6 +70,7 @@ class CoinDetailsPage extends StatelessWidget {
                       if (details.sparkline != null &&
                           details.sparkline!.isNotEmpty) ...[
                         MaxWidthContainer(
+                          ignoreSafeAreas: true,
                           maxWidth: AppBreakpoints.maxWidth,
                           child: SizedBox(
                             width: double.infinity,

@@ -4,7 +4,7 @@ import 'package:crypto_app/features/coins/views/utils/coin_ui_extension.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_avatar.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_card_container.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_percentage_change.dart';
-import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_sparkline.dart';
+import 'package:crypto_app/features/coins/views/widgets/coin_sparkline.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';

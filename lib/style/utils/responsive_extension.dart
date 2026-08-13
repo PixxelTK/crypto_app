@@ -8,6 +8,9 @@ extension ResponsiveContext on BuildContext {
 
   bool get isMobile => screenWidth < AppBreakpoints.tablet;
 
+  bool get isOrientationLandscape =>
+      MediaQuery.orientationOf(this) == Orientation.landscape;
+
   bool get isTablet =>
       screenWidth >= AppBreakpoints.tablet &&
       screenWidth < AppBreakpoints.desktop;

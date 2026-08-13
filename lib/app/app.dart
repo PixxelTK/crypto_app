@@ -6,9 +6,6 @@ import 'package:crypto_app/core/config/api_config.dart';
 import 'package:crypto_app/core/network/api_client.dart';
 import 'package:crypto_app/features/coins/repositories/coin_repository.dart';
 import 'package:crypto_app/features/coins/sources/coin_data_source.dart';
-
-import 'package:crypto_app/style/tokens/colors.dart';
-
 import 'package:crypto_app/l10n/app_localizations.dart';
 
 class App extends StatelessWidget {
@@ -34,18 +31,7 @@ class App extends StatelessWidget {
         onGenerateRoute: AppRouter.onGenerateRoute,
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
-          final isLandscape =
-              MediaQuery.orientationOf(context) == Orientation.landscape;
-          return ColoredBox(
-            color: context.colors.background,
-            child: SafeArea(
-              left: isLandscape,
-              right: isLandscape,
-              top: false,
-              bottom: false,
-              child: child ?? const SizedBox.shrink(),
-            ),
-          );
+          return child ?? const SizedBox.shrink();
         },
       ),
     );

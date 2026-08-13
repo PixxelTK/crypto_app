@@ -9,12 +9,14 @@ class MaxWidthContainer extends StatelessWidget {
     this.maxWidth,
     this.alignment = Alignment.topCenter,
     this.padding,
+    this.ignoreSafeAreas = false,
   });
 
   final Widget child;
   final double? maxWidth;
   final AlignmentGeometry alignment;
   final EdgeInsetsGeometry? padding;
+  final bool ignoreSafeAreas;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class MaxWidthContainer extends StatelessWidget {
       content = Padding(padding: padding!, child: content);
     }
 
-    return Align(
+    Widget alignedContent = Align(
       alignment: alignment,
       child: ConstrainedBox(
         constraints: BoxConstraints(
@@ -37,5 +39,17 @@ class MaxWidthContainer extends StatelessWidget {
         child: SizedBox(width: double.infinity, child: content),
       ),
     );
+
+    if (context.isOrientationLandscape && !ignoreSafeAreas) {
+      return SafeArea(
+        left: true,
+        right: true,
+        top: false,
+        bottom: false,
+        child: alignedContent,
+      );
+    }
+
+    return alignedContent;
   }
 }
