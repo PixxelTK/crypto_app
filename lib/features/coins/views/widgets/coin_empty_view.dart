@@ -1,4 +1,4 @@
-import 'package:crypto_app/app/localization/app_localizations.dart';
+import 'package:crypto_app/l10n/app_localizations.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';

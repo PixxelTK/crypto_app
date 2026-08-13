@@ -1,4 +1,4 @@
-import 'package:crypto_app/app/localization/app_localizations.dart';
+import 'package:crypto_app/l10n/app_localizations.dart';
 import 'package:crypto_app/features/coins/views/coin_list/coin_list_cubit.dart';
 import 'package:crypto_app/features/coins/views/coin_list/widgets/coin_search_bar.dart';
 import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
