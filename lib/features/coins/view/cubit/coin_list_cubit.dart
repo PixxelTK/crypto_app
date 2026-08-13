@@ -56,11 +56,15 @@ class CoinListCubit extends Cubit<CoinListState> {
         );
       }
 
+      final currentQuery = _searchQuery;
       final result = await repository.getCoins(
         cursor: _nextCursor,
-        search: _searchQuery.isEmpty ? null : _searchQuery,
+        search: currentQuery.isEmpty ? null : currentQuery,
         limit: 10,
       );
+
+      if (currentQuery != _searchQuery) return;
+
       _nextCursor = result.nextCursor;
 
       if (isRefresh || state is! CoinListLoadedState) {
