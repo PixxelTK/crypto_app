@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:crypto_app/core/config/api_config.dart';
 import 'package:crypto_app/core/network/api_client.dart';
-import 'package:crypto_app/features/coins/data/repositories/coin_repository_impl.dart';
-import 'package:crypto_app/features/coins/data/sources/coin_data_source.dart';
-import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
+import 'package:crypto_app/features/coins/repositories/coin_repository.dart';
+import 'package:crypto_app/features/coins/sources/coin_data_source.dart';
 
 import 'package:crypto_app/style/tokens/colors.dart';
 
@@ -18,7 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<CoinRepository>(
-      create: (context) => CoinRepositoryImpl(
+      create: (context) => CoinRepository(
         CoinDataSource(
           ApiClient(baseUrl: ApiConfig.baseUrl, apiKey: ApiConfig.apiKey),
         ),

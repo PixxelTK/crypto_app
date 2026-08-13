@@ -1,10 +1,10 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
-import 'package:crypto_app/features/coins/view/pages/coin_detail/coin_detail_page.dart';
-import 'package:crypto_app/features/coins/view/pages/coin_list/coin_list_page.dart';
+import 'package:crypto_app/features/coins/views/coin_details/coin_details_page.dart';
+import 'package:crypto_app/features/coins/views/coin_list/coin_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto_app/features/coins/domain/repositories/coin_repository.dart';
-import 'package:crypto_app/features/coins/view/cubit/coin_list_cubit.dart';
-import 'package:crypto_app/features/coins/view/cubit/coin_details_cubit.dart';
+import 'package:crypto_app/features/coins/repositories/coin_repository.dart';
+import 'package:crypto_app/features/coins/views/coin_list/coin_list_cubit.dart';
+import 'package:crypto_app/features/coins/views/coin_details/coin_details_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
@@ -31,7 +31,7 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) =>
                 CoinDetailsCubit(context.read<CoinRepository>())..setUuid(uuid),
-            child: const CoinDetailPage(),
+            child: const CoinDetailsPage(),
           ),
           settings: settings,
         );
