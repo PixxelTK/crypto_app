@@ -1,4 +1,4 @@
-import 'package:crypto_app/core/utils/responsive_extension.dart';
+import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
 import 'package:crypto_app/shared/widgets/pulse_loading.dart';
 import 'package:crypto_app/style/tokens/colors.dart';

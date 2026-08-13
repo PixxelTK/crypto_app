@@ -1,4 +1,4 @@
-import 'package:crypto_app/core/utils/responsive_extension.dart';
+import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:crypto_app/style/tokens/breakpoints.dart';
 import 'package:flutter/material.dart';
 

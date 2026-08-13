@@ -1,4 +1,4 @@
-import 'package:crypto_app/core/utils/responsive_extension.dart';
+import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:crypto_app/features/coins/models/coin.dart';
 import 'package:crypto_app/features/coins/views/utils/coin_ui_extension.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_avatar.dart';

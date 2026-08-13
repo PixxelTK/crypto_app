@@ -1,5 +1,5 @@
 import 'package:crypto_app/app/localization/app_localizations.dart';
-import 'package:crypto_app/core/utils/responsive_extension.dart';
+import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/radius.dart';
 import 'package:crypto_app/style/tokens/sizes.dart';
