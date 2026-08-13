@@ -36,7 +36,7 @@ class CoinDetailsModel {
       symbol: json['symbol'] as String,
       links: (json['links'] as List<dynamic>)
           .map<WebsiteLink>(
-            (json) => WebsiteLinkModel.fromJson(json as Map<String, dynamic>),
+            (json) => WebsiteLinkModel.fromJson(json as Map<String, dynamic>).toEntity(),
           )
           .toList(),
       price: double.parse(json['price'] as String),

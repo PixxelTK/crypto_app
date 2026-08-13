@@ -1,11 +1,15 @@
 import 'package:crypto_app/features/coins/domain/entities/coin_details.dart';
 
-class WebsiteLinkModel extends WebsiteLink {
+class WebsiteLinkModel {
   const WebsiteLinkModel({
-    required super.name,
-    required super.url,
-    required super.type,
+    required this.name,
+    required this.url,
+    required this.type,
   });
+
+  final String name;
+  final String url;
+  final String type;
 
   factory WebsiteLinkModel.fromJson(Map<String, dynamic> json) {
     return WebsiteLinkModel(
