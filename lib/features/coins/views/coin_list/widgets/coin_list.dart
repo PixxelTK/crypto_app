@@ -5,6 +5,7 @@ import 'package:crypto_app/features/coins/views/coin_list/widgets/coin_list_load
 import 'package:crypto_app/features/coins/views/coin_list/widgets/coin_list_item.dart';
 import 'package:crypto_app/features/coins/views/coin_list/widgets/invite_friends_item.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
+import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,7 +55,9 @@ class CoinList extends StatelessWidget {
           }
 
           return Padding(
-            padding: EdgeInsets.only(bottom: bottomPadding),
+            padding: EdgeInsets.only(
+              bottom: context.isWeb ? AppSpacing.lg : bottomPadding,
+            ),
             child: Column(
               children: [
                 ListView.builder(

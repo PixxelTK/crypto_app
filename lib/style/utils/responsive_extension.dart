@@ -1,4 +1,5 @@
 import 'package:crypto_app/style/tokens/breakpoints.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension ResponsiveContext on BuildContext {
@@ -18,4 +19,6 @@ extension ResponsiveContext on BuildContext {
   bool get isDesktop => screenWidth >= AppBreakpoints.desktop;
 
   bool get isTabletOrLarger => screenWidth >= AppBreakpoints.tablet;
+
+  bool get isWeb => kIsWeb;
 }
