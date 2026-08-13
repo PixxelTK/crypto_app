@@ -13,7 +13,7 @@ import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_detail
 import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_detail_website_button.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_error_view.dart';
 import 'package:crypto_app/features/coins/views/coin_details/widgets/coin_sparkline.dart';
-import 'package:crypto_app/core/utils/market_cap_formatter.dart';
+import 'package:crypto_app/features/coins/views/utils/market_cap_formatter.dart';
 import 'package:crypto_app/style/tokens/colors.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/tokens/typography.dart';
