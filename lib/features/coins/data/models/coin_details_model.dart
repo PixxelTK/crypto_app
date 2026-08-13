@@ -1,26 +1,32 @@
-import 'package:crypto_app/features/coins/data/models/coin_model.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin_details.dart';
-
 import 'package:crypto_app/features/coins/data/models/website_link_model.dart';
 
-class CoinDetailsModel extends CoinModel {
+class CoinDetailsModel {
   const CoinDetailsModel({
-    required super.uuid,
-    required super.name,
-    required super.symbol,
-    required super.price,
-    required super.iconUrl,
-    super.color,
-    super.change,
-    super.sparkline,
+    required this.uuid,
+    required this.name,
+    required this.symbol,
+    required this.price,
+    required this.iconUrl,
     required this.marketCap,
     required this.links,
     required this.description,
+    this.color,
+    this.change,
+    this.sparkline,
   });
 
+  final String uuid;
+  final String name;
+  final String symbol;
+  final double price;
+  final String iconUrl;
   final String description;
   final List<WebsiteLink> links;
   final double marketCap;
+  final String? color;
+  final double? change;
+  final List<double>? sparkline;
 
   factory CoinDetailsModel.fromJson(Map<String, dynamic> json) {
     return CoinDetailsModel(
@@ -29,7 +35,9 @@ class CoinDetailsModel extends CoinModel {
       description: json['description'] as String,
       symbol: json['symbol'] as String,
       links: (json['links'] as List<dynamic>)
-          .map<WebsiteLink>((json) => WebsiteLinkModel.fromJson(json as Map<String, dynamic>))
+          .map<WebsiteLink>(
+            (json) => WebsiteLinkModel.fromJson(json as Map<String, dynamic>),
+          )
           .toList(),
       price: double.parse(json['price'] as String),
       marketCap: double.parse(json['marketCap'] as String),
@@ -47,7 +55,6 @@ class CoinDetailsModel extends CoinModel {
     );
   }
 
-  @override
   CoinDetails toEntity() {
     return CoinDetails(
       uuid: uuid,
