@@ -1,6 +1,8 @@
 import 'package:crypto_app/features/coins/data/models/coin_model.dart';
 import 'package:crypto_app/features/coins/domain/entities/coin_details.dart';
 
+import 'package:crypto_app/features/coins/data/models/website_link_model.dart';
+
 class CoinDetailsModel extends CoinModel {
   const CoinDetailsModel({
     required super.uuid,
@@ -27,7 +29,7 @@ class CoinDetailsModel extends CoinModel {
       description: json['description'] as String,
       symbol: json['symbol'] as String,
       links: (json['links'] as List<dynamic>)
-          .map((json) => WebsiteLink.fromJson(json as Map<String, dynamic>))
+          .map<WebsiteLink>((json) => WebsiteLinkModel.fromJson(json as Map<String, dynamic>))
           .toList(),
       price: double.parse(json['price'] as String),
       marketCap: double.parse(json['marketCap'] as String),

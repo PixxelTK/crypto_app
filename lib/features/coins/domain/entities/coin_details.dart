@@ -38,12 +38,4 @@ class WebsiteLink {
   final String name;
   final String url;
   final String type;
-
-  factory WebsiteLink.fromJson(Map<String, dynamic> json) {
-    return WebsiteLink(
-      name: json['name'] as String,
-      url: json['url'] as String,
-      type: json['type'] as String,
-    );
-  }
 }
