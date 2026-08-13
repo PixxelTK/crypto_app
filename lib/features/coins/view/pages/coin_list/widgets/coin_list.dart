@@ -43,7 +43,7 @@ class CoinList extends StatelessWidget {
           final listItems = <Widget>[];
           for (int i = 0; i < displayCoins.length; i++) {
             listItems.add(CoinListItem(coin: displayCoins[i]));
-            
+
             final coinCount = i + 1;
             if (coinCount >= 5 && coinCount % 5 == 0) {
               final quotient = coinCount ~/ 5;
@@ -53,23 +53,23 @@ class CoinList extends StatelessWidget {
             }
           }
 
-          return Column(
-            children: [
-              ListView.builder(
-                padding: EdgeInsets.only(bottom: bottomPadding),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: listItems.length,
-                itemBuilder: (context, index) {
-                  return listItems[index];
-                },
-              ),
-              if (state.isFetchingNext)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: AppSpacing.sm),
-                  child: Center(child: CircularProgressIndicator.adaptive()),
+          return Padding(
+            padding: EdgeInsets.only(bottom: bottomPadding),
+            child: Column(
+              children: [
+                ListView.builder(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: listItems.length,
+                  itemBuilder: (context, index) {
+                    return listItems[index];
+                  },
                 ),
-            ],
+                if (state.isFetchingNext)
+                  const Center(child: CircularProgressIndicator.adaptive()),
+              ],
+            ),
           );
         }
 
