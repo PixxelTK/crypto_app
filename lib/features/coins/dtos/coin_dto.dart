@@ -41,7 +41,7 @@ class CoinDto {
     );
   }
 
-  Coin toEntity() {
+  Coin toModel() {
     return Coin(
       uuid: uuid,
       name: name,

@@ -19,7 +19,7 @@ class WebsiteLinkDto {
     );
   }
 
-  WebsiteLink toEntity() {
+  WebsiteLink toModel() {
     return WebsiteLink(name: name, url: url, type: type);
   }
 }

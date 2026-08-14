@@ -19,12 +19,12 @@ class CoinRepository {
       limit: limit,
     );
 
-    final coins = result.coins.map((model) => model.toEntity()).toList();
+    final coins = result.coins.map((model) => model.toModel()).toList();
     return (coins: coins, nextCursor: result.nextCursor);
   }
 
   Future<CoinDetails> getCoinDetails(String uuid) async {
     final result = await dataSource.getCoinDetails(uuid);
-    return result.toEntity();
+    return result.toModel();
   }
 }

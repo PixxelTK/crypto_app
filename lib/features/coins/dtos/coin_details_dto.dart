@@ -38,7 +38,7 @@ class CoinDetailsDto {
           .map<WebsiteLink>(
             (json) => WebsiteLinkDto.fromJson(
               json as Map<String, dynamic>,
-            ).toEntity(),
+            ).toModel(),
           )
           .toList(),
       price: double.parse(json['price'] as String),
@@ -57,7 +57,7 @@ class CoinDetailsDto {
     );
   }
 
-  CoinDetails toEntity() {
+  CoinDetails toModel() {
     return CoinDetails(
       uuid: uuid,
       name: name,
