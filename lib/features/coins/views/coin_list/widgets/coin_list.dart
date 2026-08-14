@@ -1,3 +1,4 @@
+import 'package:crypto_app/features/coins/models/coin.dart';
 import 'package:crypto_app/features/coins/views/coin_list/coin_list_cubit.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_empty_view.dart';
 import 'package:crypto_app/features/coins/views/widgets/coin_error_view.dart';
@@ -41,15 +42,15 @@ class CoinList extends StatelessWidget {
               ? state.coins
               : state.coins.skip(3).toList();
 
-          final listItems = <Widget>[];
+          final items = <_CoinListItemType>[];
           for (int i = 0; i < displayCoins.length; i++) {
-            listItems.add(CoinListItem(coin: displayCoins[i]));
+            items.add(_CoinData(displayCoins[i]));
 
             final coinCount = i + 1;
             if (coinCount >= 5 && coinCount % 5 == 0) {
               final quotient = coinCount ~/ 5;
               if ((quotient & (quotient - 1)) == 0) {
-                listItems.add(const InviteFriendsItem());
+                items.add(const _InviteBanner());
               }
             }
           }
@@ -64,9 +65,12 @@ class CoinList extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: listItems.length,
+                  itemCount: items.length,
                   itemBuilder: (context, index) {
-                    return listItems[index];
+                    return switch (items[index]) {
+                      _CoinData(:final coin) => CoinListItem(coin: coin),
+                      _InviteBanner() => const InviteFriendsItem(),
+                    };
                   },
                 ),
                 if (state.isFetchingNext)
@@ -80,4 +84,17 @@ class CoinList extends StatelessWidget {
       },
     );
   }
+}
+
+sealed class _CoinListItemType {
+  const _CoinListItemType();
+}
+
+class _CoinData extends _CoinListItemType {
+  const _CoinData(this.coin);
+  final Coin coin;
+}
+
+class _InviteBanner extends _CoinListItemType {
+  const _InviteBanner();
 }
