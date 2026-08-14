@@ -5,6 +5,7 @@ import 'package:crypto_app/features/coins/views/widgets/coin_error_view.dart';
 import 'package:crypto_app/features/coins/views/coin_list/widgets/coin_list_loading.dart';
 import 'package:crypto_app/features/coins/views/coin_list/widgets/coin_list_item.dart';
 import 'package:crypto_app/features/coins/views/coin_list/widgets/invite_friends_item.dart';
+import 'package:crypto_app/shared/widgets/layouts/max_width_container.dart';
 import 'package:crypto_app/style/tokens/spacing.dart';
 import 'package:crypto_app/style/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
@@ -20,20 +21,30 @@ class CoinList extends StatelessWidget {
     return BlocBuilder<CoinListCubit, CoinListState>(
       builder: (context, state) {
         if (state is CoinListLoadingState) {
-          return const CoinListLoading();
+          return const SliverToBoxAdapter(
+            child: MaxWidthContainer(child: CoinListLoading()),
+          );
         }
         if (state is CoinListErrorState) {
-          return CoinErrorView(
-            onRetry: () =>
-                context.read<CoinListCubit>().loadCoins(isRefresh: true),
+          return SliverToBoxAdapter(
+            child: MaxWidthContainer(
+              child: CoinErrorView(
+                onRetry: () =>
+                    context.read<CoinListCubit>().loadCoins(isRefresh: true),
+              ),
+            ),
           );
         }
 
         if (state is CoinListLoadedState) {
           if (state.coins.isEmpty) {
-            return CoinEmptyView(
-              onRetry: () =>
-                  context.read<CoinListCubit>().loadCoins(isRefresh: true),
+            return SliverToBoxAdapter(
+              child: MaxWidthContainer(
+                child: CoinEmptyView(
+                  onRetry: () =>
+                      context.read<CoinListCubit>().loadCoins(isRefresh: true),
+                ),
+              ),
             );
           }
 
@@ -55,32 +66,35 @@ class CoinList extends StatelessWidget {
             }
           }
 
-          return Padding(
+          final hasNextLoading = state.isFetchingNext;
+          final totalCount = items.length + (hasNextLoading ? 1 : 0);
+
+          return SliverPadding(
             padding: EdgeInsets.only(
               bottom: context.isWeb ? AppSpacing.lg : bottomPadding,
             ),
-            child: Column(
-              children: [
-                ListView.builder(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return switch (items[index]) {
-                      _CoinData(:final coin) => CoinListItem(coin: coin),
-                      _InviteBanner() => const InviteFriendsItem(),
-                    };
-                  },
-                ),
-                if (state.isFetchingNext)
-                  const Center(child: CircularProgressIndicator.adaptive()),
-              ],
+            sliver: SliverList.builder(
+              itemCount: totalCount,
+              itemBuilder: (context, index) {
+                if (hasNextLoading && index == totalCount - 1) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(vertical: AppSpacing.md),
+                    child: Center(child: CircularProgressIndicator.adaptive()),
+                  );
+                }
+
+                final Widget widget = switch (items[index]) {
+                  _CoinData(:final coin) => CoinListItem(coin: coin),
+                  _InviteBanner() => const InviteFriendsItem(),
+                };
+
+                return MaxWidthContainer(child: widget);
+              },
             ),
           );
         }
 
-        return const SizedBox.shrink();
+        return const SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }

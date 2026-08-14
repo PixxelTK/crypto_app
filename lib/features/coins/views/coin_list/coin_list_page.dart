@@ -168,9 +168,7 @@ class _CoinListPageState extends State<CoinListPage> {
               ),
             ),
 
-            const SliverToBoxAdapter(
-              child: MaxWidthContainer(child: CoinList()),
-            ),
+            const CoinList(),
           ],
         ),
       ),
