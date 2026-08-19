@@ -16,7 +16,7 @@ class InviteFriendsItem extends StatelessWidget {
     return CoinCardContainer(
       onTap: () {
         SharePlus.instance.share(
-          ShareParams(uri: Uri.parse('https://www.7solutions.co.th/jobs')),
+          ShareParams(uri: Uri.parse('https://www.odt.co.th/')),
         );
       },
       coinColor: context.colors.surface,
